@@ -135,6 +135,12 @@ public class Building implements Buildings
     }
 
     @Override
+    public int getCountEmployees()
+    {
+        return this.employees.size();
+    }
+
+    @Override
     public String toString() {
         String s = "building.Building: {" + address + " [" + coordinatesX + ";" + coordinatesY + "]\n";
         for (Employees employees : this.employees) {

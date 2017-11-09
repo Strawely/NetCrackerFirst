@@ -21,5 +21,5 @@ public interface Buildings
     void removeEmployee(Employees employee);
     boolean setEmployeeByName(String fname, String sname, Employees employee);
     boolean setEmployeeByPhone(String phone, Employees employee);
-
+    int getCountEmployees();
 }
