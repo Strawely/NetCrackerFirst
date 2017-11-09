@@ -1,10 +1,15 @@
+package building;
+
+import employee.Employees;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 
 /**
  * Created by Админ on 07.11.2017.
  */
-public class Building implements Buildings {
+public class Building implements Buildings
+{
     private String address;
     private double coordinatesX, coordinatesY;
     private HashSet<Employees> employees;
@@ -131,7 +136,7 @@ public class Building implements Buildings {
 
     @Override
     public String toString() {
-        String s = "Building: {" + address + " [" + coordinatesX + ";" + coordinatesY + "]\n";
+        String s = "building.Building: {" + address + " [" + coordinatesX + ";" + coordinatesY + "]\n";
         for (Employees employees : this.employees) {
             s += employees.toString() + "\n";
         }

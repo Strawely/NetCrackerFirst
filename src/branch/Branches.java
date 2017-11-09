@@ -1,3 +1,6 @@
+package branch;
+
+import building.Buildings;
 import javafx.util.Pair;
 
 /**
@@ -13,8 +16,8 @@ public interface Branches
     void removeBuilding(Buildings buildings);
     Buildings getBuildingByAddress(String address);
     Buildings getBuildingByCoordinates(double x, double y);
-    // Buildings getBuildingByWorkings(Employees[] workings);
+    // building.Buildings getBuildingByWorkings(employee.Employees[] workings);
     boolean setBuildingByAddress(Buildings building, String address);
     boolean setBuildingByCoordinates(double x, double y, Buildings building);
-    // boolean setBuildingByWorkings(Employees[] workings, Buildings buildings);
+    // boolean setBuildingByWorkings(employee.Employees[] workings, building.Buildings buildings);
 }

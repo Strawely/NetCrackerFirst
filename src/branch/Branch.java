@@ -1,3 +1,7 @@
+package branch;
+
+import building.Buildings;
+
 import java.util.HashSet;
 
 /**
@@ -8,7 +12,7 @@ public class Branch implements Branches
     private String name;
     private HashSet<Buildings> buildings;
 
-    public Branch(String name,Buildings[] buildings)
+    public Branch(String name, Buildings[] buildings)
     {
         this.name = name;
 
@@ -87,11 +91,11 @@ public class Branch implements Branches
     }
 
 //    @Override
-//    public Buildings getBuildingByWorkings(Employees[] workings)
+//    public building.Buildings getBuildingByWorkings(employee.Employees[] workings)
 //    {
-//        for(Buildings buildings: this.buildings)
+//        for(building.Buildings buildings: this.buildings)
 //        {
-//            Employees[] workings1 = buildings.getEmployees();
+//            employee.Employees[] workings1 = buildings.getEmployees();
 //            if (workings.length == workings1.length)
 //            {
 //                boolean flaf = true;
@@ -144,7 +148,7 @@ public class Branch implements Branches
     }
 
 //    @Override
-//    public boolean setBuildingByWorkings(Employees[] workings, Buildings buildings)
+//    public boolean setBuildingByWorkings(employee.Employees[] workings, building.Buildings buildings)
 //    {
 //        return false;
 //    }
@@ -153,7 +157,7 @@ public class Branch implements Branches
     @Override
     public String toString()
     {
-        String s = "Branch: {" + name + "\n";
+        String s = "branch.Branch: {" + name + "\n";
         for (Buildings buildings: this.buildings)
         {
             s += buildings.toString() + "\n";

@@ -1,9 +1,14 @@
+package department;
+
+import employee.Employees;
+
 import java.util.HashSet;
 
 /**
  * Created by Админ on 07.11.2017.
  */
-public class Department implements Departments {
+public class Department implements Departments
+{
     private HashSet<Employees> employees;
     private String name;
     private Employees director;
@@ -51,7 +56,7 @@ public class Department implements Departments {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder()
-                .append("Department name: ")
+                .append("department.Department name: ")
                 .append(this.name)
                 .append("\nDirector:\n")
                 .append(this.director)
