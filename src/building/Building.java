@@ -18,12 +18,19 @@ public class Building implements Buildings
         this.address = address;
         this.coordinatesX = coordinatesX;
         this.coordinatesY = coordinatesY;
-
         HashSet<Employees> workings1 = new HashSet<>();
         for (int i = 0, size = employees.length; i < size; ++i) {
             workings1.add(employees[i]);
         }
         this.employees = new HashSet<>(workings1);
+    }
+
+    public Building(String address, double coordinatesX, double coordinatesY)
+    {
+        this.address = address;
+        this.coordinatesX = coordinatesX;
+        this.coordinatesY = coordinatesY;
+        HashSet<Employees> workings1 = new HashSet<>();
     }
 
     @Override
