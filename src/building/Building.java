@@ -30,7 +30,7 @@ public class Building implements Buildings
         this.address = address;
         this.coordinatesX = coordinatesX;
         this.coordinatesY = coordinatesY;
-        HashSet<Employees> workings1 = new HashSet<>();
+        this.employees = new HashSet<>();
     }
 
     @Override
