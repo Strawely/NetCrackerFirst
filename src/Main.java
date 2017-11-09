@@ -2,6 +2,8 @@ import branch.Branch;
 import branch.Branches;
 import building.Building;
 import building.Buildings;
+import company.Companies;
+import company.Company;
 import department.Department;
 import department.Departments;
 import employee.Employee;
@@ -29,7 +31,14 @@ public class Main {
 
         Branches branch1=new Branch("branch1",buildings);
 
-        System.out.println(branch1);
+        Branches[] branches = new Branches[]{branch1};
+        Departments[] departments = new Departments[]{department1,department2};
+
+        Companies company = new Company("Company0", "focusArea0", new Employee("firstName5", "secondName5", "55-55-55", 1200),
+                branches, departments);
+
+        System.out.println(company);
+
 
     }
 }
