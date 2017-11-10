@@ -142,5 +142,4 @@ public class Company implements Companies {
         }
         return stringBuilder.toString();
     }
-
 }
