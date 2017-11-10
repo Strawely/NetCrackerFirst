@@ -23,6 +23,11 @@ public class Branch implements Branches
         this.buildings=new HashSet<>(buildings1);
     }
 
+    public Branch(String name)
+    {
+        this.name = name;
+        this.buildings = new HashSet<Buildings>();
+    }
     @Override
     public void setName(String name)
     {
@@ -145,6 +150,12 @@ public class Branch implements Branches
             }
         }
         return false;
+    }
+
+    @Override
+    public int getCountBuildings()
+    {
+        return this.buildings.size();
     }
 
 //    @Override

@@ -20,4 +20,5 @@ public interface Branches
     boolean setBuildingByAddress(Buildings building, String address);
     boolean setBuildingByCoordinates(double x, double y, Buildings building);
     // boolean setBuildingByWorkings(employee.Employees[] workings, building.Buildings buildings);
+    int getCountBuildings();
 }

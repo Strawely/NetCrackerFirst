@@ -104,7 +104,12 @@ public class Building implements Buildings
         if (employees.size() == 0) {
             return null;
         }
-        return (Employees[]) employees.toArray();
+        Employees[] empl = new Employees[employees.size()];
+        for(int i = 0; i < empl.length; ++ i)
+        {
+            empl[i] = employees.get(i);
+        }
+        return empl;
     }
 
     @Override
