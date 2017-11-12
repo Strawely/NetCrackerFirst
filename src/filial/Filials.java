@@ -1,17 +1,18 @@
-package branch;
+package filial;
 
 import building.Buildings;
-import javafx.util.Pair;
+
+import java.util.Collection;
 
 /**
  * Created by Админ on 07.11.2017.
  */
-public interface Branches
+public interface Filials
 {
     void setName(String name);
     String getName();
-    void setBuildings(Buildings[] buildings);
-    Buildings[] getBuildings();
+    void setBuildings(Collection<Buildings> buildings);
+    Collection<Buildings> getBuildings();
     void addBuilding(Buildings buildings);
     void removeBuilding(Buildings buildings);
     Buildings getBuildingByAddress(String address);
@@ -19,5 +20,6 @@ public interface Branches
     // building.Buildings getBuildingByWorkings(employee.Employees[] workings);
     boolean setBuildingByAddress(Buildings building, String address);
     boolean setBuildingByCoordinates(double x, double y, Buildings building);
+    int getCountBuildings();
     // boolean setBuildingByWorkings(employee.Employees[] workings, building.Buildings buildings);
 }

@@ -1,6 +1,6 @@
 package company;
 
-import branch.Branches;
+import filial.Filials;
 import department.Departments;
 import employee.Employee;
 import employee.Employees;
@@ -10,7 +10,7 @@ import java.util.HashSet;
 public interface Companies {
 
 
-    Branches getBranchByName(String name);
+    Filials getBranchByName(String name);
 
     Departments getDepartmentByName(String name);
 
@@ -28,9 +28,9 @@ public interface Companies {
 
     void setDirector(Employees director);
 
-    HashSet<Branches> getBranches();
+    HashSet<Filials> getBranches();
 
-    void setBranches(HashSet<Branches> branches);
+    void setBranches(HashSet<Filials> branches);
 
     HashSet<Departments> getDepartments();
 

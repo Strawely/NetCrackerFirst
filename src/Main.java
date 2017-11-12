@@ -1,5 +1,5 @@
-import branch.Branch;
-import branch.Branches;
+import filial.Filial;
+import filial.Filials;
 import building.Building;
 import building.Buildings;
 import company.Companies;
@@ -24,20 +24,20 @@ public class Main {
         Departments department1 = new Department(employees2, "department1", employeeD);
         Departments department2 = new Department(employees2, "department2", employeeD1);
 
-        Buildings building1 = new Building("address1", 1, 1, employees1);
+        Buildings building1 = new Building("address1", 1, 1, employees1);       
         Buildings building2 = new Building("address2", 2, 2, employees2);
 
         Buildings[] buildings = {building1, building2};
 
-        Branches branch1=new Branch("branch1",buildings);
-
-        Branches[] branches = new Branches[]{branch1};
-        Departments[] departments = new Departments[]{department1,department2};
-
-        Companies company = new Company("Company0", "focusArea0", new Employee("firstName5", "secondName5", "55-55-55", 1200),
-                branches, departments);
-
-        System.out.println(company);
+//        Filials branch1=new Filial("branch1",buildings);
+//
+//        Filials[] branches = new Filials[]{branch1};
+//        Departments[] departments = new Departments[]{department1,department2};
+//
+//        Companies company = new Company("Company0", "focusArea0", new Employee("firstName5", "secondName5", "55-55-55", 1200),
+//                branches, departments);
+//
+//        System.out.println(company);
 
 
     }

@@ -3,6 +3,7 @@ package building;
 import employee.Employees;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashSet;
 
 /**
@@ -54,16 +55,13 @@ public class Building implements Buildings
     }
 
 
-    public void setEmployees(Employees[] employees) {
-        HashSet<Employees> employees1 = new HashSet<Employees>();
-        for (int i = 0, size = employees.length; i < size; ++i) {
-            employees1.add(employees[i]);
-        }
-        this.employees = new HashSet<Employees>(employees1);
+    public void setEmployees(Collection<Employees> employees) {
+        this.employees = new HashSet<Employees>(employees);
     }
 
-    public Employees[] getEmployees() {
-        return (Employees[]) employees.toArray();
+    public Collection<Employees> getEmployees() {
+
+        return employees;
     }
 
     @Override
@@ -87,17 +85,14 @@ public class Building implements Buildings
     }
 
     @Override
-    public Employees[] getEmployeeBySalary(int salary) {
+    public Collection<Employees> getEmployeeBySalary(int salary) {
         ArrayList<Employees> employees = new ArrayList<Employees>();
         for (Employees employees1 : this.employees) {
             if (salary == employees1.getSalary()) {
                 employees.add(employees1);
             }
         }
-        if (employees.size() == 0) {
-            return null;
-        }
-        return (Employees[]) employees.toArray();
+        return  employees;
     }
 
     @Override
