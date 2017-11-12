@@ -165,12 +165,12 @@ public class Filial implements Filials
     @Override
     public String toString()
     {
-        String s = "filial.Filial: {" + name + "\n";
+        StringBuilder s =  new StringBuilder().append("filial.Filial: {").append( name).append("\n");
         for (Buildings buildings: this.buildings)
         {
-            s += buildings.toString() + "\n";
+            s.append(buildings.toString()).append("\n");
         }
-        s += "}";
-        return s;
+        s.append("}");
+        return s.toString();
     }
 }

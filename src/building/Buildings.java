@@ -11,7 +11,8 @@ public interface Buildings
 {
     void setAddress(String address);
     String getAddress();
-    void setCoordinates(double x, double y);
+    void setCoordinatesX(double x);
+    void setCoordinatesY(double y);
     double getCoordinatesX();
     double getCoordinatesY();
     void setEmployees(Collection<Employees> employees);

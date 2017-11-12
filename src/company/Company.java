@@ -5,6 +5,7 @@ import department.Departments;
 import employee.Employee;
 import employee.Employees;
 
+import java.util.Collection;
 import java.util.HashSet;
 
 public class Company implements Companies {
@@ -27,20 +28,12 @@ public class Company implements Companies {
         departments = new HashSet<Departments>();
     }
 
-    public Company(String name, String focusArea, Employees director, Filials[] branches, Departments[] departments) {
+    public Company(String name, String focusArea, Employees director, Collection<Filials> branches, Collection<Departments> departments) {
         this.name = name;
         this.focusArea = focusArea;
         this.director = director;
-        this.branches = new HashSet<Filials>();
-        this.departments = new HashSet<Departments>();
-        for (Filials element :
-                branches) {
-            this.branches.add(element);
-        }
-        for (Departments element :
-                departments) {
-            this.departments.add(element);
-        }
+        this.branches = new HashSet<Filials>(branches);
+        this.departments = new HashSet<Departments>(departments);
     }
 
     @Override

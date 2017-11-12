@@ -15,16 +15,11 @@ public class Building implements Buildings
     private double coordinatesX, coordinatesY;
     private HashSet<Employees> employees;
 
-    public Building(String address, double coordinatesX, double coordinatesY, Employees[] employees) {
+    public Building(String address, double coordinatesX, double coordinatesY, Collection<Employees> employees) {
         this.address = address;
         this.coordinatesX = coordinatesX;
         this.coordinatesY = coordinatesY;
-
-        HashSet<Employees> workings1 = new HashSet<>();
-        for (int i = 0, size = employees.length; i < size; ++i) {
-            workings1.add(employees[i]);
-        }
-        this.employees = new HashSet<>(workings1);
+        this.employees = new HashSet<>(employees);
     }
 
     @Override
@@ -39,8 +34,13 @@ public class Building implements Buildings
 
 
     @Override
-    public void setCoordinates(double x, double y) {
+    public void setCoordinatesX(double x) {
         this.coordinatesX = x;
+    }
+
+    @Override
+    public void setCoordinatesY(double y)
+    {
         this.coordinatesY = y;
     }
 
@@ -137,11 +137,12 @@ public class Building implements Buildings
 
     @Override
     public String toString() {
-        String s = "building.Building: {" + address + " [" + coordinatesX + ";" + coordinatesY + "]\n";
+        StringBuilder s = new StringBuilder().append("building.Building: {").append(address).append(" [")
+                .append(coordinatesX).append( ";").append(coordinatesY).append("]\n");
         for (Employees employees : this.employees) {
-            s += employees.toString() + "\n";
+            s.append(employees.toString()).append("\n");
         }
-        s += "}";
-        return s;
+        s.append("}");
+        return s.toString();
     }
 }
