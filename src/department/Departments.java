@@ -2,14 +2,16 @@ package department;
 
 import employee.Employees;
 
+import java.util.Collection;
+
 /**
  * Created by Админ on 07.11.2017.
  */
 public interface Departments
 {
-    Employees[] getEmployees();
+    Collection<Employees> getEmployees();
 
-    public void setEmployees(Employees[] employees);
+    public void setEmployees(Collection<Employees> employees);
 
     public String getName();
 

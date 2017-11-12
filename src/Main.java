@@ -1,5 +1,5 @@
-import branch.Branch;
-import branch.Branches;
+import filial.Filial;
+import filial.Filials;
 import building.Building;
 import building.Buildings;
 import company.Companies;
@@ -8,6 +8,8 @@ import department.Department;
 import department.Departments;
 import employee.Employee;
 import employee.Employees;
+
+import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) {
@@ -21,18 +23,30 @@ public class Main {
         Employees[] employees1 = {employee1, employee2, employeeD};
         Employees[] employees2 = {employee3, employee4, employeeD1};
 
-        Departments department1 = new Department(employees2, "department1", employeeD);
-        Departments department2 = new Department(employees2, "department2", employeeD1);
+        ArrayList<Employees> empl1 = new ArrayList<>();
+        ArrayList<Employees> empl2 = new ArrayList<>();
+        for (int i = 0; i < employees1.length; ++i)
+        {
+            empl1.add(employees1[i]);
+            empl2.add(employees2[i]);
+        }
 
-        Buildings building1 = new Building("address1", 1, 1, employees1);
-        Buildings building2 = new Building("address2", 2, 2, employees2);
+        Departments department1 = new Department(empl1, "department1", employeeD);
+        Departments department2 = new Department(empl2, "department2", employeeD1);
 
-        Buildings[] buildings = {building1, building2};
+        Buildings building1 = new Building("address1", 1, 1, empl1);
+        Buildings building2 = new Building("address2", 2, 2, empl2);
 
-        Branches branch1=new Branch("branch1",buildings);
+        ArrayList<Buildings> buildings = new ArrayList<>();
+        buildings.add(building1);
+        buildings.add(building2);
+        Filials branch1=new Filial("branch1",buildings);
 
-        Branches[] branches = new Branches[]{branch1};
-        Departments[] departments = new Departments[]{department1,department2};
+        ArrayList<Filials> branches = new ArrayList<>();
+        branches.add(branch1);
+        ArrayList<Departments> departments = new ArrayList<>();
+        departments.add(department1);
+        departments.add(department2);
 
         Companies company = new Company("Company0", "focusArea0", new Employee("firstName5", "secondName5", "55-55-55", 1200),
                 branches, departments);

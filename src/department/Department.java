@@ -2,6 +2,7 @@ package department;
 
 import employee.Employees;
 
+import java.util.Collection;
 import java.util.HashSet;
 
 /**
@@ -14,27 +15,18 @@ public class Department implements Departments
     private Employees director;
     private static String DEFAULT_NAME = "";
 
-    public Department(Employees[] employees, String name, Employees director) {
-        HashSet<Employees> employees1 = new HashSet<>();
-        for (int i = 0; i < employees.length; i++) {
-            employees1.add(employees[i]);
-        }
-        this.employees = new HashSet<>(employees1);
-
+    public Department(Collection<Employees> employees, String name, Employees director) {
+        this.employees = new HashSet<>(employees);
         this.name = name;
         this.director = director;
     }
 
-    public Employees[] getEmployees() {
-        return (Employees[]) employees.toArray();
+    public Collection<Employees> getEmployees() {
+        return  employees;
     }
 
-    public void setEmployees(Employees[] employees) {
-        HashSet<Employees> employees1 = new HashSet<>();
-        for (int i = 0; i < employees.length; i++) {
-            employees1.add(employees[i]);
-        }
-        this.employees = new HashSet<>(employees1);
+    public void setEmployees(Collection<Employees> employees) {
+        this.employees = new HashSet<>(employees);
     }
 
     public String getName() {
