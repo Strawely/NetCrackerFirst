@@ -1,8 +1,6 @@
-package employee;
+package model.employee;
 
-/**
- * Created by Админ on 07.11.2017.
- */
+
 public interface Employees
 {
 

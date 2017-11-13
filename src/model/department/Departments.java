@@ -1,6 +1,6 @@
-package department;
+package model.department;
 
-import employee.Employees;
+import model.employee.Employees;
 
 import java.util.Collection;
 

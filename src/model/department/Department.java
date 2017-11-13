@@ -1,6 +1,6 @@
-package department;
+package model.department;
 
-import employee.Employees;
+import model.employee.Employees;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -54,7 +54,7 @@ public class Department implements Departments {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder()
-                .append("department.Department name: ")
+                .append("model.department.Department name: ")
                 .append(this.name)
                 .append("\nDirector:\n")
                 .append(this.director)

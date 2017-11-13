@@ -1,12 +1,10 @@
-package building;
+package model.building;
 
-import employee.Employees;
+import model.employee.Employees;
 
 import java.util.Collection;
 
-/**
- * Created by Админ on 07.11.2017.
- */
+
 public interface Buildings
 {
     void setAddress(String address);

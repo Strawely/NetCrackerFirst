@@ -1,12 +1,10 @@
-package filial;
+package model.filial;
 
-import building.Buildings;
+import model.building.Buildings;
 
 import java.util.Collection;
 
-/**
- * Created by Админ on 07.11.2017.
- */
+
 public interface Filials
 {
     void setName(String name);
@@ -17,9 +15,9 @@ public interface Filials
     void removeBuilding(Buildings buildings);
     Buildings getBuildingByAddress(String address);
     Buildings getBuildingByCoordinates(double x, double y);
-    // building.Buildings getBuildingByWorkings(employee.Employees[] workings);
+    // model.building.Buildings getBuildingByWorkings(model.employee.Employees[] workings);
     boolean setBuildingByAddress(Buildings building, String address);
     boolean setBuildingByCoordinates(double x, double y, Buildings building);
     int getCountBuildings();
-    // boolean setBuildingByWorkings(employee.Employees[] workings, building.Buildings buildings);
+    // boolean setBuildingByWorkings(model.employee.Employees[] workings, model.building.Buildings buildings);
 }

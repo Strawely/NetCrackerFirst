@@ -1,13 +1,11 @@
-package filial;
+package model.filial;
 
-import building.Buildings;
+import model.building.Buildings;
 
 import java.util.Collection;
 import java.util.HashSet;
 
-/**
- * Created by Админ on 07.11.2017.
- */
+
 public class Filial implements Filials
 {
     private String name;
@@ -45,7 +43,7 @@ public class Filial implements Filials
     @Override
     public void setBuildings(Collection<Buildings> buildings)
     {
-        this.buildings = new HashSet<Buildings>(buildings);
+        this.buildings = new HashSet<>(buildings);
     }
 
     @Override
@@ -93,11 +91,11 @@ public class Filial implements Filials
     }
 
 //    @Override
-//    public building.Buildings getBuildingByWorkings(employee.Employees[] workings)
+//    public model.building.Buildings getBuildingByWorkings(model.employee.Employees[] workings)
 //    {
-//        for(building.Buildings buildings: this.buildings)
+//        for(model.building.Buildings buildings: this.buildings)
 //        {
-//            employee.Employees[] workings1 = buildings.getEmployees();
+//            model.employee.Employees[] workings1 = buildings.getEmployees();
 //            if (workings.length == workings1.length)
 //            {
 //                boolean flaf = true;
@@ -156,7 +154,7 @@ public class Filial implements Filials
     }
 
 //    @Override
-//    public boolean setBuildingByWorkings(employee.Employees[] workings, building.Buildings buildings)
+//    public boolean setBuildingByWorkings(model.employee.Employees[] workings, model.building.Buildings buildings)
 //    {
 //        return false;
 //    }
@@ -165,7 +163,7 @@ public class Filial implements Filials
     @Override
     public String toString()
     {
-        StringBuilder s =  new StringBuilder().append("filial.Filial: {").append( name).append("\n");
+        StringBuilder s =  new StringBuilder().append("model.filial.Filial: {").append( name).append("\n");
         for (Buildings buildings: this.buildings)
         {
             s.append(buildings.toString()).append("\n");

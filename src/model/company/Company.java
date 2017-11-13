@@ -1,9 +1,9 @@
-package company;
+package model.company;
 
-import filial.Filials;
-import department.Departments;
-import employee.Employee;
-import employee.Employees;
+import model.filial.Filials;
+import model.department.Departments;
+import model.employee.Employee;
+import model.employee.Employees;
 
 import java.util.Collection;
 import java.util.HashSet;

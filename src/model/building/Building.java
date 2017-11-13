@@ -1,14 +1,12 @@
-package building;
+package model.building;
 
-import employee.Employees;
+import model.employee.Employees;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 
-/**
- * Created by Админ on 07.11.2017.
- */
+
 public class Building implements Buildings
 {
     private String address;
@@ -56,7 +54,7 @@ public class Building implements Buildings
 
 
     public void setEmployees(Collection<Employees> employees) {
-        this.employees = new HashSet<Employees>(employees);
+        this.employees = new HashSet<>(employees);
     }
 
     public Collection<Employees> getEmployees() {
@@ -86,7 +84,7 @@ public class Building implements Buildings
 
     @Override
     public Collection<Employees> getEmployeeBySalary(int salary) {
-        ArrayList<Employees> employees = new ArrayList<Employees>();
+        ArrayList<Employees> employees = new ArrayList<>();
         for (Employees employees1 : this.employees) {
             if (salary == employees1.getSalary()) {
                 employees.add(employees1);
@@ -137,7 +135,7 @@ public class Building implements Buildings
 
     @Override
     public String toString() {
-        StringBuilder s = new StringBuilder().append("building.Building: {").append(address).append(" [")
+        StringBuilder s = new StringBuilder().append("model.building.Building: {").append(address).append(" [")
                 .append(coordinatesX).append( ";").append(coordinatesY).append("]\n");
         for (Employees employees : this.employees) {
             s.append(employees.toString()).append("\n");
