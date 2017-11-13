@@ -4,20 +4,22 @@ import employee.Employees;
 
 import java.util.Collection;
 
-/**
- * Created by Админ on 07.11.2017.
- */
-public interface Departments
-{
+
+public interface Departments {
     Collection<Employees> getEmployees();
 
-    public void setEmployees(Collection<Employees> employees);
+    void setEmployees(Collection<Employees> employees);
 
-    public String getName();
+    void addEmployee(Employees employee);
 
-    public void setName(String name);
+    void removeEmployee(Employees employee);
 
-    public Employees getDirector();
+    String getName();
 
-    public void setDirector(Employees director);
+    void setName(String name);
+
+    Employees getDirector();
+
+    void setDirector(Employees director);
+
 }

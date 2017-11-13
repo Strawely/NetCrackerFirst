@@ -17,31 +17,31 @@ public class Company implements Companies {
 
     private Employees director;
 
-    private HashSet<Filials> branches;
+    private HashSet<Filials> filials;
     private HashSet<Departments> departments;
 
     public Company() {
         name = DEFAULT_STRING_VALUE;
         focusArea = DEFAULT_STRING_VALUE;
         director = new Employee();
-        branches = new HashSet<Filials>();
-        departments = new HashSet<Departments>();
+        filials = new HashSet<>();
+        departments = new HashSet<>();
     }
 
-    public Company(String name, String focusArea, Employees director, Collection<Filials> branches, Collection<Departments> departments) {
+    public Company(String name, String focusArea, Employees director, Collection<Filials> filials, Collection<Departments> departments) {
         this.name = name;
         this.focusArea = focusArea;
         this.director = director;
-        this.branches = new HashSet<Filials>(branches);
-        this.departments = new HashSet<Departments>(departments);
+        this.filials = new HashSet<>(filials);
+        this.departments = new HashSet<>(departments);
     }
 
     @Override
-    public Filials getBranchByName(String name){
+    public Filials getFilialByName(String name) {
         Filials result = null;
         for (Filials element :
-                branches) {
-            if (element.getName().equals(name)){
+                filials) {
+            if (element.getName().equals(name)) {
                 result = element;
                 break;
             }
@@ -50,11 +50,11 @@ public class Company implements Companies {
     }
 
     @Override
-    public Departments getDepartmentByName(String name){
+    public Departments getDepartmentByName(String name) {
         Departments result = null;
         for (Departments element :
                 departments) {
-            if (element.getName().equals(name)){
+            if (element.getName().equals(name)) {
                 result = element;
                 break;
             }
@@ -98,13 +98,33 @@ public class Company implements Companies {
     }
 
     @Override
-    public HashSet<Filials> getBranches() {
-        return branches;
+    public HashSet<Filials> getFilials() {
+        return filials;
     }
 
     @Override
-    public void setBranches(HashSet<Filials> branches) {
-        this.branches = branches;
+    public void setFilials(HashSet<Filials> branches) {
+        this.filials = branches;
+    }
+
+    @Override
+    public void addFilial(Filials filial) {
+        filials.add(filial);
+    }
+
+    @Override
+    public void removeFilial(Filials filial) {
+        filials.remove(filial);
+    }
+
+    @Override
+    public void removeDepartment(Departments department) {
+        departments.remove(department);
+    }
+
+    @Override
+    public void addDepartment(Departments department) {
+        departments.add(department);
     }
 
     @Override
@@ -125,7 +145,7 @@ public class Company implements Companies {
         stringBuilder.append("Focus area: " + focusArea + "\n");
         stringBuilder.append("Filials:\n");
         for (Filials element :
-                branches) {
+                filials) {
             stringBuilder.append("  " + element.toString() + "\n");
         }
         stringBuilder.append("Departments:\n");

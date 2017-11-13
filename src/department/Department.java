@@ -5,11 +5,8 @@ import employee.Employees;
 import java.util.Collection;
 import java.util.HashSet;
 
-/**
- * Created by Админ on 07.11.2017.
- */
-public class Department implements Departments
-{
+
+public class Department implements Departments {
     private HashSet<Employees> employees;
     private String name;
     private Employees director;
@@ -22,11 +19,20 @@ public class Department implements Departments
     }
 
     public Collection<Employees> getEmployees() {
-        return  employees;
+        return employees;
     }
 
     public void setEmployees(Collection<Employees> employees) {
         this.employees = new HashSet<>(employees);
+    }
+
+    @Override
+    public void removeEmployee(Employees employee) {
+        employees.remove(employee);
+    }
+
+    public void addEmployee(Employees employee) {
+        employees.add(employee);
     }
 
     public String getName() {

@@ -10,7 +10,7 @@ import java.util.HashSet;
 public interface Companies {
 
 
-    Filials getBranchByName(String name);
+    Filials getFilialByName(String name);
 
     Departments getDepartmentByName(String name);
 
@@ -28,11 +28,17 @@ public interface Companies {
 
     void setDirector(Employees director);
 
-    HashSet<Filials> getBranches();
+    HashSet<Filials> getFilials();
 
-    void setBranches(HashSet<Filials> branches);
+    void setFilials(HashSet<Filials> branches);
+
+    void addFilial(Filials filial);
+    void removeFilial(Filials filial);
 
     HashSet<Departments> getDepartments();
 
     void setDepartments(HashSet<Departments> departments);
+
+    void addDepartment(Departments department);
+    void removeDepartment(Departments department);
 }
