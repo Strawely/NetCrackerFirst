@@ -135,12 +135,6 @@ public class Building implements Buildings
 
     @Override
     public String toString() {
-        StringBuilder s = new StringBuilder().append("model.building.Building: {").append(address).append(" [")
-                .append(coordinatesX).append( ";").append(coordinatesY).append("]\n");
-        for (Employees employees : this.employees) {
-            s.append(employees.toString()).append("\n");
-        }
-        s.append("}");
-        return s.toString();
+        return address;
     }
 }

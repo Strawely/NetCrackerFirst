@@ -53,16 +53,7 @@ public class Department implements Departments {
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder()
-                .append("model.department.Department name: ")
-                .append(this.name)
-                .append("\nDirector:\n")
-                .append(this.director)
-                .append("\nEmplyees:");
-        for (Employees i : employees) {
-            sb.append("\n").append(i);
-        }
-        return sb.toString();
+        return name;
     }
 
 }

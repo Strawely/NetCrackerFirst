@@ -62,16 +62,7 @@ public class Employee implements Employees
 
     @Override
     public String toString() {
-        return new StringBuilder()
-                .append("First Name: ")
-                .append(this.firstName)
-                .append("\nSecond name: ")
-                .append(this.secondName)
-                .append("\nPhone number: ")
-                .append(this.phoneNumber)
-                .append("\nSalary: ")
-                .append(this.salary)
-                .toString();
+        return secondName;
     }
 
     @Override

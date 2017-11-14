@@ -139,20 +139,6 @@ public class Company implements Companies {
 
     @Override
     public String toString() {
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("Name: " + name + "\n");
-        stringBuilder.append("Director: " + director.toString() + "\n");
-        stringBuilder.append("Focus area: " + focusArea + "\n");
-        stringBuilder.append("Filials:\n");
-        for (Filials element :
-                filials) {
-            stringBuilder.append("  " + element.toString() + "\n");
-        }
-        stringBuilder.append("Departments:\n");
-        for (Departments element :
-                departments) {
-            stringBuilder.append("  " + element.toString() + "\n");
-        }
-        return stringBuilder.toString();
+        return name;
     }
 }

@@ -163,12 +163,6 @@ public class Filial implements Filials
     @Override
     public String toString()
     {
-        StringBuilder s =  new StringBuilder().append("model.filial.Filial: {").append( name).append("\n");
-        for (Buildings buildings: this.buildings)
-        {
-            s.append(buildings.toString()).append("\n");
-        }
-        s.append("}");
-        return s.toString();
+        return name;
     }
 }
