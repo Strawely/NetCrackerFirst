@@ -1,16 +1,16 @@
-package company;
+package model.company;
 
-import branch.Branches;
-import department.Departments;
-import employee.Employee;
-import employee.Employees;
+import model.filial.Filials;
+import model.department.Departments;
+import model.employee.Employee;
+import model.employee.Employees;
 
 import java.util.HashSet;
 
 public interface Companies {
 
 
-    Branches getBranchByName(String name);
+    Filials getFilialByName(String name);
 
     Departments getDepartmentByName(String name);
 
@@ -28,11 +28,17 @@ public interface Companies {
 
     void setDirector(Employees director);
 
-    HashSet<Branches> getBranches();
+    HashSet<Filials> getFilials();
 
-    void setBranches(HashSet<Branches> branches);
+    void setFilials(HashSet<Filials> branches);
+
+    void addFilial(Filials filial);
+    void removeFilial(Filials filial);
 
     HashSet<Departments> getDepartments();
 
     void setDepartments(HashSet<Departments> departments);
+
+    void addDepartment(Departments department);
+    void removeDepartment(Departments department);
 }

@@ -1,8 +1,6 @@
-package employee;
+package model.employee;
 
-/**
- * Created by Админ on 07.11.2017.
- */
+
 public class Employee implements Employees
 {
     private String firstName, secondName, phoneNumber;
@@ -64,16 +62,7 @@ public class Employee implements Employees
 
     @Override
     public String toString() {
-        return new StringBuilder()
-                .append("First Name: ")
-                .append(this.firstName)
-                .append("\nSecond name: ")
-                .append(this.secondName)
-                .append("\nPhone number: ")
-                .append(this.phoneNumber)
-                .append("\nSalary: ")
-                .append(this.salary)
-                .toString();
+        return secondName;
     }
 
     @Override

@@ -1,22 +1,23 @@
-package building;
+package model.building;
 
-import employee.Employees;
+import model.employee.Employees;
 
-/**
- * Created by Админ on 07.11.2017.
- */
+import java.util.Collection;
+
+
 public interface Buildings
 {
     void setAddress(String address);
     String getAddress();
-    void setCoordinates(double x, double y);
+    void setCoordinatesX(double x);
+    void setCoordinatesY(double y);
     double getCoordinatesX();
     double getCoordinatesY();
-    void setEmployees(Employees[] employees);
-    Employees[] getEmployees();
+    void setEmployees(Collection<Employees> employees);
+    Collection<Employees> getEmployees();
     Employees getEmployeeByName(String fname, String sname);
     Employees getEmployeeByPhone(String phone);
-    Employees[] getEmployeeBySalary(int salary);
+    Collection<Employees> getEmployeeBySalary(int salary);
     void addEmployee(Employees employee);
     void removeEmployee(Employees employee);
     boolean setEmployeeByName(String fname, String sname, Employees employee);
