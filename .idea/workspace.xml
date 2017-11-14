@@ -3,11 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="63657c6c-f740-48ec-a665-4f9a48ffa9e3" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/model/building/Building.java" afterPath="$PROJECT_DIR$/src/model/building/Building.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/model/company/Company.java" afterPath="$PROJECT_DIR$/src/model/company/Company.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/model/department/Department.java" afterPath="$PROJECT_DIR$/src/model/department/Department.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/model/employee/Employee.java" afterPath="$PROJECT_DIR$/src/model/employee/Employee.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/model/filial/Filial.java" afterPath="$PROJECT_DIR$/src/model/filial/Filial.java" />
     </list>
     <ignored path="NetCrackerFirst.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -849,7 +844,7 @@
       <workItem from="1510255743481" duration="244000" />
       <workItem from="1510489238230" duration="106000" />
       <workItem from="1510580696715" duration="3385000" />
-      <workItem from="1510677214959" duration="2150000" />
+      <workItem from="1510677214959" duration="2187000" />
     </task>
     <task id="LOCAL-00001" summary="Added 'add' and 'remove' methods">
       <created>1510582467336</created>
@@ -865,11 +860,18 @@
       <option name="project" value="LOCAL" />
       <updated>1510583489572</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Changed toString() methods">
+      <created>1510679429526</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1510679429527</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="6184000" />
+    <option name="totallyTimeSpent" value="6221000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -924,7 +926,8 @@
     <MESSAGE value="Added Company package" />
     <MESSAGE value="Added 'add' and 'remove' methods" />
     <MESSAGE value="Added 4 packages" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added 4 packages" />
+    <MESSAGE value="Changed toString() methods" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changed toString() methods" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
