@@ -1,3 +1,5 @@
+package services;
+
 import model.filial.Filial;
 import model.filial.Filials;
 import model.building.Building;
@@ -10,9 +12,12 @@ import model.employee.Employee;
 import model.employee.Employees;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
-public class Main {
-    public static void main(String[] args) {
+public class TestClass {
+    HashSet<Companies> companies = new HashSet<>();
+
+    public TestClass() {
         Employees employee1 = new Employee("firstName1", "secondName1", "11-11-11", 1000);
         Employees employee2 = new Employee("firstName2", "secondName2", "22-22-22", 2000);
         Employees employee3 = new Employee("firstName3", "secondName3", "33-33-33", 3000);
@@ -23,36 +28,50 @@ public class Main {
         Employees[] employees1 = {employee1, employee2, employeeD};
         Employees[] employees2 = {employee3, employee4, employeeD1};
 
-        ArrayList<Employees> empl1 = new ArrayList<>();
-        ArrayList<Employees> empl2 = new ArrayList<>();
-        for (int i = 0; i < employees1.length; ++i)
-        {
+        HashSet<Employees> empl1 = new HashSet<>();
+        HashSet<Employees> empl2 = new HashSet<>();
+        for (int i = 0; i < employees1.length; ++i) {
             empl1.add(employees1[i]);
             empl2.add(employees2[i]);
         }
 
         Departments department1 = new Department(empl1, "department1", employeeD);
         Departments department2 = new Department(empl2, "department2", employeeD1);
+        Departments department3 = new Department(empl2, "department3", employee3);
 
         Buildings building1 = new Building("address1", 1, 1, empl1);
         Buildings building2 = new Building("address2", 2, 2, empl2);
+        Buildings building3 = new Building("address3", 3, 3, empl2);
 
-        ArrayList<Buildings> buildings = new ArrayList<>();
+
+        HashSet<Buildings> buildings = new HashSet<>();
         buildings.add(building1);
         buildings.add(building2);
-        Filials branch1=new Filial("branch1",buildings);
+        Filials filial = new Filial("filial0", buildings);
 
-        ArrayList<Filials> branches = new ArrayList<>();
-        branches.add(branch1);
-        ArrayList<Departments> departments = new ArrayList<>();
+        HashSet<Filials> filials = new HashSet<>();
+        filials.add(filial);
+        HashSet<Departments> departments = new HashSet<>();
         departments.add(department1);
         departments.add(department2);
 
-        Companies company = new Company("Company0", "focusArea0", new Employee("firstName5", "secondName5", "55-55-55", 1200),
-                branches, departments);
+        companies.add(new Company("Company0", "focusArea0", new Employee("firstName5", "secondName5", "55-55-55", 1200),
+                filials, departments));
+        buildings.add(building3);
+        filials.add(new Filial("filial1", buildings));
+        departments.add(department3);
+        companies.add(new Company("Company1", "focusArea1", new Employee("firstName6", "secondName6", "66-66-66", 2200),
+                filials, departments));
 
-        System.out.println(company);
+    }
 
-
+    public HashSet<Companies> getCompanies() {
+        return companies;
+    }
+    public void removeCompany(Companies company){
+        companies.remove(company);
+    }
+    public void addCompany(Companies company){
+        companies.add(company);
     }
 }

@@ -5,10 +5,11 @@ import model.department.Departments;
 import model.employee.Employee;
 import model.employee.Employees;
 
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.HashSet;
 
-public class Company implements Companies {
+public class Company implements Companies,Serializable {
 
     private static final String DEFAULT_STRING_VALUE = "";
 
