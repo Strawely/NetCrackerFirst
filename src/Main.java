@@ -1,13 +1,14 @@
-import filial.Filial;
-import filial.Filials;
-import building.Building;
-import building.Buildings;
-import company.Companies;
-import company.Company;
-import department.Department;
-import department.Departments;
-import employee.Employee;
-import employee.Employees;
+import model.filial.Filial;
+import model.filial.Filials;
+import model.building.Building;
+import model.building.Buildings;
+import model.company.Companies;
+import model.company.Company;
+import model.department.Department;
+import model.department.Departments;
+import model.employee.Employee;
+import model.employee.Employees;
+import view.employee.EmployeeView;
 
 import java.util.ArrayList;
 
@@ -53,6 +54,7 @@ public class Main {
 
         System.out.println(company);
 
-
+        EmployeeView employeeView = new EmployeeView(employee1);
+        employeeView.setVisible(true);
     }
 }
