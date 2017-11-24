@@ -1,4 +1,4 @@
-package services;
+package model;
 
 import model.filial.Filial;
 import model.filial.Filials;
@@ -14,10 +14,10 @@ import model.employee.Employees;
 import java.util.ArrayList;
 import java.util.HashSet;
 
-public class TestClass {
+public class CompanyModel {
     HashSet<Companies> companies = new HashSet<>();
 
-    public TestClass() {
+    public CompanyModel() {
         Employees employee1 = new Employee("firstName1", "secondName1", "11-11-11", 1000);
         Employees employee2 = new Employee("firstName2", "secondName2", "22-22-22", 2000);
         Employees employee3 = new Employee("firstName3", "secondName3", "33-33-33", 3000);
@@ -59,6 +59,7 @@ public class TestClass {
                 filials, departments));
         buildings.add(building3);
         filials.add(new Filial("filial1", buildings));
+        filials.add(new Filial("filial2",buildings));
         departments.add(department3);
         companies.add(new Company("Company1", "focusArea1", new Employee("firstName6", "secondName6", "66-66-66", 2200),
                 filials, departments));

@@ -1,15 +1,14 @@
 package view;
 
 import javax.swing.*;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.*;
 
 import model.company.Companies;
 import model.company.Company;
+import model.department.Departments;
+import model.filial.Filials;
 import services.Serializer;
-import services.TestClass;
+import model.CompanyModel;
 
 public class CompanyView extends JDialog {
     private JPanel contentPane;
@@ -23,39 +22,67 @@ public class CompanyView extends JDialog {
     private JTextField textField3;
     private JButton buttonOK;
     private JButton buttonCancel;
-    private JList<Companies> list1;
+    private JList list1;
     private JButton removeCompanyButton;
     private JButton addCompanyButton;
     private JButton serializeCompanyButton;
-    TestClass testClass = new TestClass();
+    private JList list2;
+    private JList list3;
+    private JPanel JPanel1;
+    private JPanel JPanel0;
+    private JPanel JPanel2;
+    CompanyModel companyModel = new CompanyModel();
 
     int i;
 
     public CompanyView() {
         setModal(true);
-        DefaultListModel<Companies> listModel = new DefaultListModel<>();
-        list1.setModel(listModel);
+        setContentPane(contentPane);
+        this.contentPane.setPreferredSize(new Dimension(500, 300));
+        this.JPanel0.setPreferredSize(new Dimension(110, 290));
+        this.JPanel1.setPreferredSize(new Dimension(110, 290));
+        this.JPanel2.setPreferredSize(new Dimension(110, 290));
+
+        //Controller
+        DefaultListModel<Companies> companiesDefaultListModel = new DefaultListModel<>();
+        DefaultListModel<Filials> filialsDefaultListModel = new DefaultListModel<>();
+        DefaultListModel<Departments> departmentsDefaultListModel = new DefaultListModel<>();
+        list1.setModel(companiesDefaultListModel);
+        list2.setModel(filialsDefaultListModel);
+        list3.setModel(departmentsDefaultListModel);
+
         loadCompaniesButton.addActionListener(e -> {
-            listModel.clear();
-            for (Companies company : testClass.getCompanies())
-                listModel.addElement(company);
+            companiesDefaultListModel.clear();
+            for (Companies company : companyModel.getCompanies())
+                companiesDefaultListModel.addElement(company);
         });
+
         removeCompanyButton.addActionListener(e -> {
-            if(list1.getSelectedIndex()!=-1) {
-                testClass.removeCompany(listModel.getElementAt(list1.getSelectedIndex()));
-                listModel.remove(list1.getSelectedIndex());
+            if (list1.getSelectedIndex() != -1) {
+                companyModel.removeCompany(companiesDefaultListModel.getElementAt(list1.getSelectedIndex()));
+                companiesDefaultListModel.remove(list1.getSelectedIndex());
                 textField1.setText("");
                 textField2.setText("");
                 textField3.setText("");
+                filialsDefaultListModel.clear();
+                departmentsDefaultListModel.clear();
             }
         });
-        setContentPane(contentPane);
+
         list1.addListSelectionListener(e -> {
-            if(list1.getSelectedIndex()!=-1) {
-                Companies selectedCompany = listModel.getElementAt(list1.getSelectedIndex());
+            if (list1.getSelectedIndex() != -1) {
+                Companies selectedCompany = companiesDefaultListModel.getElementAt(list1.getSelectedIndex());
                 textField1.setText(selectedCompany.getName());
                 textField2.setText(selectedCompany.getFocusArea());
                 textField3.setText(selectedCompany.getDirector().toString());
+
+                filialsDefaultListModel.clear();
+                for (Filials filial : selectedCompany.getFilials())
+                    filialsDefaultListModel.addElement(filial);
+
+                departmentsDefaultListModel.clear();
+                for (Departments department : selectedCompany.getDepartments())
+                    departmentsDefaultListModel.addElement(department);
             }
         });
         //TODO: addButton
@@ -64,14 +91,23 @@ public class CompanyView extends JDialog {
         });
         serializeCompanyButton.addActionListener(e -> {
             if (list1.getSelectedIndex() != -1)
-                Serializer.store(listModel.getElementAt(list1.getSelectedIndex()));
+                Serializer.store(companiesDefaultListModel.getElementAt(list1.getSelectedIndex()));
         });
+
     }
+
+
 
     public static void main(String[] args) {
         CompanyView dialog = new CompanyView();
+        try {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        } catch (Exception e) {
+            e.getMessage();
+        }
         dialog.pack();
         dialog.setVisible(true);
+
         System.exit(0);
     }
 
