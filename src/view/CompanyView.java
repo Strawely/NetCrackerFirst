@@ -84,6 +84,7 @@ public class CompanyView extends JDialog {
                 departmentsDefaultListModel.clear();
                 for (Departments department : selectedCompany.getDepartments())
                     departmentsDefaultListModel.addElement(department);
+
             }
         });
         //TODO: addButton
