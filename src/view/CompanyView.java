@@ -51,6 +51,7 @@ public class CompanyView extends JDialog {
         list2.setModel(filialsDefaultListModel);
         list3.setModel(departmentsDefaultListModel);
 
+
         loadCompaniesButton.addActionListener(e -> {
             companiesDefaultListModel.clear();
             for (Companies company : companyModel.getCompanies())
