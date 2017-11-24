@@ -25,7 +25,7 @@ public class CompanyView extends JDialog {
     private JList list1;
     private JButton removeCompanyButton;
     private JButton addCompanyButton;
-    private JButton serializeCompanyButton;
+    private JButton serializeCompaniesButton;
     private JList list2;
     private JList list3;
     private JPanel JPanel1;
@@ -91,17 +91,17 @@ public class CompanyView extends JDialog {
         addCompanyButton.addActionListener(e -> {
 
         });
-        serializeCompanyButton.addActionListener(e -> {
-            if (list1.getSelectedIndex() != -1)
-                Serializer.store(companiesDefaultListModel.getElementAt(list1.getSelectedIndex()));
+        serializeCompaniesButton.addActionListener(e -> {
+            for(int i=0;i<companiesDefaultListModel.getSize();i++)
+                Serializer.store(companiesDefaultListModel.getElementAt(i));
         });
 
     }
 
 
-
     public static void main(String[] args) {
         CompanyView dialog = new CompanyView();
+
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (Exception e) {
