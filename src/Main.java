@@ -8,6 +8,7 @@ import model.department.Department;
 import model.department.Departments;
 import model.employee.Employee;
 import model.employee.Employees;
+import view.department.DepartmentView;
 import view.employee.EmployeeView;
 
 import java.util.ArrayList;
@@ -54,7 +55,11 @@ public class Main {
 
         System.out.println(company);
 
-        EmployeeView employeeView = new EmployeeView(employee1);
-        employeeView.setVisible(true);
+//        EmployeeView employeeView = new EmployeeView(employee1);
+//        employeeView.setVisible(true);
+//        EmployeeView employeeView2 = new EmployeeView(employee2);
+//        employeeView2.setVisible(true);
+        DepartmentView departmentView = new DepartmentView(department1);
+        departmentView.setVisible(true);
     }
 }

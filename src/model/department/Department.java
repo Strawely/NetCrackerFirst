@@ -4,6 +4,7 @@ import model.employee.Employees;
 
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Iterator;
 
 /**
  * Created by Админ on 07.11.2017.
@@ -41,6 +42,51 @@ public class Department implements Departments
         return director;
     }
 
+    @Override
+    public Employees getEmployeesByName(String fname, String sname)
+    {
+        for (Employees employe : this.employees)
+        {
+            if(fname.equals(employe.getFirstName()) && sname.equals(employe.getSecondName()))
+            {
+                return employe;
+            }
+        }
+        throw new IllegalArgumentException();
+    }
+
+    @Override
+    public Employees getEmployeesByFSName(String fsname)
+    {
+        for (Employees employe : this.employees)
+        {
+            String s = employe.getFirstName() + employe.getSecondName();
+            if(fsname.equals(s))
+            {
+                return employe;
+            }
+        }
+        throw new IllegalArgumentException();
+    }
+
+    @Override
+    public void addEmployees(Employees employees)
+    {
+        this.employees.add(employees);
+    }
+
+    @Override
+    public void removeEmployees(Employees employees)
+    {
+        this.employees.remove(employees);
+    }
+
+    @Override
+    public int getCountEmploye()
+    {
+        return this.employees.size();
+    }
+
     public void setDirector(Employees director) {
         this.director = director;
     }
@@ -59,4 +105,9 @@ public class Department implements Departments
         return sb.toString();
     }
 
+    @Override
+    public Iterator<Employees> iterator()
+    {
+        return employees.iterator();
+    }
 }

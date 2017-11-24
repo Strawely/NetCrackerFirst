@@ -1,6 +1,7 @@
 package view.employee;
 
 import model.employee.Employees;
+import view.SetEmpl;
 
 import javax.swing.*;
 import java.awt.*;
@@ -20,12 +21,18 @@ public class EmployeeView extends JFrame
     private JTextField textFieldfirstname = new JTextField("0", 8), textsecondtname = new JTextField("0", 8);
     private JTextField textFieldfphone = new JTextField("0", 11), textsalary = new JTextField("0", 8);
     private JButton buttonOk = new JButton("Ok"), buttonset = new JButton("Change");
+    public final static int NEW_EMPLOY = 1;
+    public final static int SET_EMPLOY = 1;
+    private int status;
+    private SetEmpl setEmpl;
 
-    public EmployeeView(Employees employees)
+    public EmployeeView(Employees employees, int status, SetEmpl setEmpl)
     {
         super("EmployeeView");
         this.setResizable(false);
         this.setSize(300, 200);
+        this.status = status;
+        this.setEmpl = setEmpl;
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.employeesModel = employees;
         textFieldfirstname.setText(employeesModel.getFirstName());
@@ -65,8 +72,15 @@ public class EmployeeView extends JFrame
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                setVisible(false);
-                dispose();
+                if (status == EmployeeView.SET_EMPLOY)
+                {
+                    setVisible(false);
+                    dispose();
+                }
+                if (status == EmployeeView.NEW_EMPLOY)
+                {
+                    setEmpl.NewEmploy(employees);
+                }
             }
         });
         buttonset.addActionListener(new ActionListener()
@@ -74,19 +88,20 @@ public class EmployeeView extends JFrame
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                String command = e.getActionCommand();
-                if (command.equals("Ok"))
-                {
-                    dispose();
-                }
-                if (command.equals("Change"))
+                try
                 {
                     employeesModel.setFirstName(textFieldfirstname.getText());
                     employeesModel.setSecondName(textsecondtname.getText());
                     employeesModel.setPhoneNumber(textFieldfphone.getText());
-                    employeesModel.setSalary(Integer.parseInt(textsalary.getText()));
+
+                        employeesModel.setSalary(Integer.parseInt(textsalary.getText()));
+                    }
+                    catch (Exception e1)
+                    {
+                        JOptionPane.showMessageDialog(EmployeeView.this, "Ошибка", "Вы вы вели плохие параметры", JOptionPane.WARNING_MESSAGE);
+                    }
                 }
-            }
+
         });
     }
 

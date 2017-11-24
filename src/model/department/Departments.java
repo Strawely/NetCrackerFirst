@@ -7,7 +7,7 @@ import java.util.Collection;
 /**
  * Created by Админ on 07.11.2017.
  */
-public interface Departments
+public interface Departments extends Iterable<Employees>
 {
     Collection<Employees> getEmployees();
 
@@ -19,7 +19,15 @@ public interface Departments
 
     public Employees getDirector();
 
+    Employees getEmployeesByName(String fname, String sname);
 
+    Employees getEmployeesByFSName(String fsname);
+
+    void addEmployees(Employees employees);
+
+    void removeEmployees(Employees employees);
+
+    int getCountEmploye();
 
     public void setDirector(Employees director);
 }
