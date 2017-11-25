@@ -1,11 +1,13 @@
-package model.filial;
+package filial;
 
-import model.building.Buildings;
+import building.Buildings;
 
 import java.util.Collection;
 import java.util.HashSet;
 
-
+/**
+ * Created by Админ on 07.11.2017.
+ */
 public class Filial implements Filials
 {
     private String name;
@@ -43,7 +45,7 @@ public class Filial implements Filials
     @Override
     public void setBuildings(Collection<Buildings> buildings)
     {
-        this.buildings = new HashSet<>(buildings);
+        this.buildings = new HashSet<Buildings>(buildings);
     }
 
     @Override
@@ -91,11 +93,11 @@ public class Filial implements Filials
     }
 
 //    @Override
-//    public model.building.Buildings getBuildingByWorkings(model.employee.Employees[] workings)
+//    public building.Buildings getBuildingByWorkings(employee.Employees[] workings)
 //    {
-//        for(model.building.Buildings buildings: this.buildings)
+//        for(building.Buildings buildings: this.buildings)
 //        {
-//            model.employee.Employees[] workings1 = buildings.getEmployees();
+//            employee.Employees[] workings1 = buildings.getEmployees();
 //            if (workings.length == workings1.length)
 //            {
 //                boolean flaf = true;
@@ -154,7 +156,7 @@ public class Filial implements Filials
     }
 
 //    @Override
-//    public boolean setBuildingByWorkings(model.employee.Employees[] workings, model.building.Buildings buildings)
+//    public boolean setBuildingByWorkings(employee.Employees[] workings, building.Buildings buildings)
 //    {
 //        return false;
 //    }

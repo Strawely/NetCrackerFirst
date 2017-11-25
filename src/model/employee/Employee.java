@@ -1,6 +1,8 @@
-package model.employee;
+package employee;
 
-
+/**
+ * Created by Админ on 07.11.2017.
+ */
 public class Employee implements Employees
 {
     private String firstName, secondName, phoneNumber;
