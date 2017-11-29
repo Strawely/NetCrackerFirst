@@ -3,11 +3,12 @@ package model.department;
 import model.employee.Employees;
 
 import java.util.Collection;
+import java.util.Comparator;
 
 /**
  * Created by Админ on 07.11.2017.
  */
-public interface Departments extends Iterable<Employees>
+public interface Departments extends Iterable<Employees>, Comparator<Employees>
 {
     Collection<Employees> getEmployees();
 
@@ -23,7 +24,7 @@ public interface Departments extends Iterable<Employees>
 
     Employees getEmployeesByFSName(String fsname);
 
-    void addEmployees(Employees employees);
+    boolean addEmployees(Employees employees);
 
     void removeEmployees(Employees employees);
 

@@ -1,7 +1,6 @@
 package view.employee;
 
 import model.employee.Employees;
-import view.SetEmpl;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,7 +10,7 @@ import java.awt.event.ActionListener;
 /**
  * Created by Админ on 12.11.2017.
  */
-public class EmployeeView extends JFrame
+public class EmployeeView extends JDialog
 {
     private Employees employeesModel;
     private JLabel labalfirstname = new JLabel("First Name");
@@ -21,18 +20,20 @@ public class EmployeeView extends JFrame
     private JTextField textFieldfirstname = new JTextField("0", 8), textsecondtname = new JTextField("0", 8);
     private JTextField textFieldfphone = new JTextField("0", 11), textsalary = new JTextField("0", 8);
     private JButton buttonOk = new JButton("Ok"), buttonset = new JButton("Change");
-    public final static int NEW_EMPLOY = 1;
-    public final static int SET_EMPLOY = 1;
-    private int status;
-    private SetEmpl setEmpl;
+//    public final static int NEW_EMPLOY = 1;
+//    public final static int SET_EMPLOY = 1;
+//    private int status;
+    private final static int GOOD_CREATE = 1, BAD_CREATE = 0;
+    private int flagcreate = 0;
+    //private EmployeWork setEmpl;
 
-    public EmployeeView(Employees employees, int status, SetEmpl setEmpl)
+    public EmployeeView(Employees employees,/* int status, EmployeWork setEmpl,*/ JFrame frame)
     {
-        super("EmployeeView");
+        super(frame, "EmployeeView", true);
         this.setResizable(false);
         this.setSize(300, 200);
-        this.status = status;
-        this.setEmpl = setEmpl;
+        //this.status = status;
+        //this.setEmpl = setEmpl;
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.employeesModel = employees;
         textFieldfirstname.setText(employeesModel.getFirstName());
@@ -72,14 +73,18 @@ public class EmployeeView extends JFrame
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                if (status == EmployeeView.SET_EMPLOY)
+                try
                 {
-                    setVisible(false);
-                    dispose();
+                    if (flagcreate == GOOD_CREATE)
+                    {
+                        setVisible(false);
+                        dispose();
+                    }
+                    else throw new Exception();
                 }
-                if (status == EmployeeView.NEW_EMPLOY)
+                catch (Exception e1)
                 {
-                    setEmpl.NewEmploy(employees);
+                    JOptionPane.showMessageDialog(EmployeeView.this, "Ошибка", "Вы вы вели плохие параметры", JOptionPane.WARNING_MESSAGE);
                 }
             }
         });
@@ -90,14 +95,20 @@ public class EmployeeView extends JFrame
             {
                 try
                 {
+                    if (textFieldfirstname.getText().equals("") || textsecondtname.getText().equals("")
+                            || textFieldfphone.getText().equals(""))
+                    {
+                        throw new Exception();
+                    }
                     employeesModel.setFirstName(textFieldfirstname.getText());
                     employeesModel.setSecondName(textsecondtname.getText());
                     employeesModel.setPhoneNumber(textFieldfphone.getText());
-
-                        employeesModel.setSalary(Integer.parseInt(textsalary.getText()));
+                    employeesModel.setSalary(Integer.parseInt(textsalary.getText()));
+                    flagcreate = GOOD_CREATE;
                     }
                     catch (Exception e1)
                     {
+                        flagcreate = BAD_CREATE;
                         JOptionPane.showMessageDialog(EmployeeView.this, "Ошибка", "Вы вы вели плохие параметры", JOptionPane.WARNING_MESSAGE);
                     }
                 }
@@ -124,5 +135,10 @@ public class EmployeeView extends JFrame
                 employeesModel.setSalary(Integer.parseInt(textsalary.getText()));
             }
         }
+    }
+
+    public Employees getEmployeesModel()
+    {
+        return this.employeesModel;
     }
 }

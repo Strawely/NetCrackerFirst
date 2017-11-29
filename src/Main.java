@@ -9,7 +9,6 @@ import model.department.Departments;
 import model.employee.Employee;
 import model.employee.Employees;
 import view.department.DepartmentView;
-import view.employee.EmployeeView;
 
 import java.util.ArrayList;
 
@@ -35,7 +34,6 @@ public class Main {
 
         Departments department1 = new Department(empl1, "department1", employeeD);
         Departments department2 = new Department(empl2, "department2", employeeD1);
-
         Buildings building1 = new Building("address1", 1, 1, empl1);
         Buildings building2 = new Building("address2", 2, 2, empl2);
 
@@ -59,7 +57,19 @@ public class Main {
 //        employeeView.setVisible(true);
 //        EmployeeView employeeView2 = new EmployeeView(employee2);
 //        employeeView2.setVisible(true);
-        DepartmentView departmentView = new DepartmentView(department1);
-        departmentView.setVisible(true);
+        department1.addEmployees(new Employee("Ivan", "Ivanov", "8745254", 1500));
+        System.out.println(department1.getCountEmploye());
+        //department1.addEmployees(new Employee("Ivan", "Ivanov", "8745254", 1500));
+        System.out.println(department1.getCountEmploye());
+        for (Employees employees: department1)
+        {
+            System.out.println(employees.hashCode());
+        }
+//        DepartmentView departmentView = new DepartmentView(department1);
+//        departmentView.setVisible(true);
+
+        DepartmentView departmentV = new DepartmentView(company.getDepartments());
+        departmentV.setVisible(true);
+//        System.out.println("sfff");
     }
 }

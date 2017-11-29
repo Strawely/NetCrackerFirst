@@ -1,10 +1,10 @@
 package model.department;
 
+import except.CantCreateEmployyException;
+import model.employee.Employee;
 import model.employee.Employees;
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Iterator;
+import java.util.*;
 
 /**
  * Created by Админ on 07.11.2017.
@@ -15,6 +15,7 @@ public class Department implements Departments
     private String name;
     private Employees director;
     private static String DEFAULT_NAME = "";
+    private boolean flagSortFName = false, flagSortSName = false, flagSortSalary = false;
 
     public Department(Collection<Employees> employees, String name, Employees director) {
         this.employees = new HashSet<>(employees);
@@ -70,9 +71,9 @@ public class Department implements Departments
     }
 
     @Override
-    public void addEmployees(Employees employees)
+    public boolean addEmployees(Employees employees)
     {
-        this.employees.add(employees);
+        return this.employees.add(employees);
     }
 
     @Override
@@ -110,4 +111,19 @@ public class Department implements Departments
     {
         return employees.iterator();
     }
+
+    @Override
+    public int compare(Employees o1, Employees o2)
+    {
+        return 0;
+    }
+
+//    void sort(String field){
+//        Comparator<Employees> comparator;
+//        if  (field.equals("name"))
+//            comparator = (o1, o2) -> o1.getFirstName().compareTo(o2.getFirstName());
+//        Collections.sort(employees, comparator);
+//    }
+
+
 }
