@@ -1,13 +1,10 @@
-package filial;
+package model.filial;
 
-import building.Buildings;
+import model.building.Buildings;
 
 import java.util.Collection;
 import java.util.HashSet;
 
-/**
- * Created by Админ on 07.11.2017.
- */
 public class Filial implements Filials
 {
     private String name;
@@ -45,7 +42,7 @@ public class Filial implements Filials
     @Override
     public void setBuildings(Collection<Buildings> buildings)
     {
-        this.buildings = new HashSet<Buildings>(buildings);
+        this.buildings = new HashSet<>(buildings);
     }
 
     @Override

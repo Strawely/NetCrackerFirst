@@ -2,7 +2,11 @@ package view;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javafx.scene.control.DialogPane;
+import model.CompanyModelInterface;
 import model.company.Companies;
 import model.company.Company;
 import model.department.Departments;
@@ -31,9 +35,8 @@ public class CompanyView extends JDialog {
     private JPanel JPanel1;
     private JPanel JPanel0;
     private JPanel JPanel2;
-    CompanyModel companyModel = new CompanyModel();
+    CompanyModelInterface companyModel = new CompanyModel();
 
-    int i;
 
     public CompanyView() {
         setModal(true);
@@ -42,11 +45,37 @@ public class CompanyView extends JDialog {
         this.JPanel0.setPreferredSize(new Dimension(110, 290));
         this.JPanel1.setPreferredSize(new Dimension(110, 290));
         this.JPanel2.setPreferredSize(new Dimension(110, 290));
+        this.setTitle("Company");
 
-        //Controller
         DefaultListModel<Companies> companiesDefaultListModel = new DefaultListModel<>();
         DefaultListModel<Filials> filialsDefaultListModel = new DefaultListModel<>();
         DefaultListModel<Departments> departmentsDefaultListModel = new DefaultListModel<>();
+
+        JMenu newMenu = new JMenu("Menu");
+
+        JMenuItem searchMenuItem = new JMenuItem("Search");
+        newMenu.add(searchMenuItem);
+        JMenuItem clearSearchMenuItem = new JMenuItem("Clear search");
+        newMenu.add(searchMenuItem);
+        newMenu.add(clearSearchMenuItem);
+        JMenuBar jMenuBar = new JMenuBar();
+        jMenuBar.add(newMenu);
+        this.setJMenuBar(jMenuBar);
+
+        searchMenuItem.addActionListener(e -> {
+            DefaultListModel<Companies> tempDefaultListModel = new DefaultListModel<>();
+            String searchCriteria=JOptionPane.showInputDialog("Введи критерий поиска");
+            for (Companies i : companyModel.getCompanies()) {
+                if(i.getName().contains(searchCriteria))
+                    tempDefaultListModel.addElement(i);
+            }
+            list1.setModel(tempDefaultListModel);
+        });
+        clearSearchMenuItem.addActionListener(e -> {
+            list1.setModel(companiesDefaultListModel);
+        });
+
+        //Controller
         list1.setModel(companiesDefaultListModel);
         list2.setModel(filialsDefaultListModel);
         list3.setModel(departmentsDefaultListModel);
@@ -87,28 +116,29 @@ public class CompanyView extends JDialog {
 
             }
         });
-        //TODO: addButton
-        addCompanyButton.addActionListener(e -> {
-
-        });
         serializeCompaniesButton.addActionListener(e -> {
-            for(int i=0;i<companiesDefaultListModel.getSize();i++)
+            for (int i = 0; i < companiesDefaultListModel.getSize(); i++)
                 Serializer.store(companiesDefaultListModel.getElementAt(i));
         });
 
+        addCompanyButton.addActionListener(e -> {
+            CompanyViewAdd companyViewAdd = new CompanyViewAdd();
+            companyViewAdd.pack();
+            companyViewAdd.setVisible(true);
+
+        });
     }
 
 
     public static void main(String[] args) {
-        CompanyView dialog = new CompanyView();
-
+        CompanyView companyView = new CompanyView();
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (Exception e) {
             e.getMessage();
         }
-        dialog.pack();
-        dialog.setVisible(true);
+        companyView.pack();
+        companyView.setVisible(true);
 
         System.exit(0);
     }

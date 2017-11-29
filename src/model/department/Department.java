@@ -1,13 +1,10 @@
-package department;
+package model.department;
 
-import employee.Employees;
+import model.employee.Employees;
 
 import java.util.Collection;
 import java.util.HashSet;
 
-/**
- * Created by Админ on 07.11.2017.
- */
 public class Department implements Departments
 {
     private HashSet<Employees> employees;
@@ -59,9 +56,9 @@ public class Department implements Departments
         return name;
     }
 
-    @Override
-    public Iterator<Employees> iterator()
-    {
-        return employees.iterator();
-    }
+   // @Override
+   // public Iterator<Employees> iterator()
+    //{
+    //    return employees.iterator();
+    //}
 }
