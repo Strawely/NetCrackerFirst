@@ -5,6 +5,7 @@ import model.department.Departments;
 import model.employee.Employee;
 import model.employee.Employees;
 import view.employee.EmployeeView;
+import view.utils.SortedAll;
 
 import javax.swing.*;
 import java.awt.*;
@@ -38,12 +39,22 @@ public class DepartmentView extends JFrame
     private JButton buttonNewEmp = new JButton("New Employee"), buttondelete = new JButton("Delete Employee");
     private JPanel panelbutton = new JPanel();
     private JLabel labelEmployee = new JLabel("Employees");
+    private JMenuBar menuBar = new JMenuBar();
+    private JMenu menuFile = new JMenu("File"), menuSorted = new JMenu("Sorted");
+    private JMenuItem menuItemByFname = new JMenuItem("By first name"), menuItemBySName = new JMenuItem("By second name"),
+                        menuItemSalary = new JMenuItem("By salary");
 
     public DepartmentView(Collection<Departments> departments)
     {
         super("DepartmentView");
         this.setSize(930, 300);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        menuBar.add(menuFile);
+        menuBar.add(menuSorted);
+        menuSorted.add(menuItemByFname);
+        menuSorted.add(menuItemBySName);
+        menuSorted.add(menuItemSalary);
+        this.setJMenuBar(menuBar);
         this.departments = new ArrayList<>(departments) ;
         tableDepartment = new TableDepartment(paneldepartments ,this.departments);
         table = new JTable(tableDepartment);
@@ -134,6 +145,40 @@ public class DepartmentView extends JFrame
                 fsname = DepartmentView.this.departments.get(row).getDirector().getFirstName() +
                         " "  + DepartmentView.this.departments.get(row).getDirector().getSecondName();
                 labeldirectorinfo.setText(fsname);
+            }
+        });
+        menuItemByFname.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+//                DepartmentView.this.departments.get(row).setEmployees(
+//                        SortedAll.sortbByFirstName(new ArrayList<>(DepartmentView.this.departments.get(row).getEmployees())));
+                tableEmployye.setEmployees(SortedAll.sortbByFirstName(new ArrayList<>(DepartmentView.this.departments.get(row).getEmployees())));
+                tableemployy.revalidate();
+                tableemployy.repaint();
+            }
+        });
+
+        menuItemBySName.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                tableEmployye.setEmployees(SortedAll.sortbBySecondName(new ArrayList<>(DepartmentView.this.departments.get(row).getEmployees())));
+                tableemployy.revalidate();
+                tableemployy.repaint();
+            }
+        });
+
+        menuItemSalary.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                tableEmployye.setEmployees(SortedAll.sortbBySalary(new ArrayList<>(DepartmentView.this.departments.get(row).getEmployees())));
+                tableemployy.revalidate();
+                tableemployy.repaint();
             }
         });
     }
