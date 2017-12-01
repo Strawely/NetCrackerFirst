@@ -44,6 +44,9 @@ public class CompanyService {
         companies.add(company1);
         companies.add(company2);
     }
+    public CompanyService(HashSet<Companies> companies ){
+        this.companies=companies;
+    }
 
     public HashSet<Companies> getElements() {
         return companies;

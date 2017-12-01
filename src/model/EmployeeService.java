@@ -8,11 +8,14 @@ import java.util.HashSet;
 public class EmployeeService {
     HashSet<Employees> employees;
 
-    EmployeeService() {
+    public EmployeeService() {
         employees = new HashSet<>();
         for (int i = 0; i < 10; i++) {
             employees.add(new Employee("FirstName" + i, "SecondName" + i, "0" + i, i * 1000));
         }
+    }
+    public EmployeeService(HashSet<Employees> employees){
+        this.employees=employees;
     }
 
 

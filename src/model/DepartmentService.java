@@ -9,7 +9,7 @@ import java.util.HashSet;
 public class DepartmentService {
     HashSet<Departments> departments;
 
-    DepartmentService() {
+    public DepartmentService() {
         HashSet<Employees> employees;
         EmployeeService employeeService = new EmployeeService();
         employees = employeeService.getElements();
@@ -17,8 +17,11 @@ public class DepartmentService {
         for (int i = 0; i < 10; i++) {
             departments.add(new Department(employees, "Department" + i, (Employees) employees.toArray()[1]));
         }
-
     }
+    public DepartmentService(HashSet<Departments> departments){
+        this.departments=departments;
+    }
+
 
 
     public HashSet<Departments> getElements() {
