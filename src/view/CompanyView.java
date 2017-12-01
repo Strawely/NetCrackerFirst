@@ -2,17 +2,12 @@ package view;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
-import javafx.scene.control.DialogPane;
-import model.CompanyModelInterface;
 import model.company.Companies;
-import model.company.Company;
 import model.department.Departments;
 import model.filial.Filials;
 import services.Serializer;
-import model.CompanyModel;
+import model.CompanyService;
 
 public class CompanyView extends JDialog {
     private JPanel contentPane;
@@ -35,7 +30,7 @@ public class CompanyView extends JDialog {
     private JPanel JPanel1;
     private JPanel JPanel0;
     private JPanel JPanel2;
-    CompanyModelInterface companyModel = new CompanyModel();
+    CompanyService companyModel = new CompanyService();
 
 
     public CompanyView() {
@@ -65,7 +60,7 @@ public class CompanyView extends JDialog {
         searchMenuItem.addActionListener(e -> {
             DefaultListModel<Companies> tempDefaultListModel = new DefaultListModel<>();
             String searchCriteria=JOptionPane.showInputDialog("Введи критерий поиска");
-            for (Companies i : companyModel.getCompanies()) {
+            for (Companies i : companyModel.getElements()) {
                 if(i.getName().contains(searchCriteria))
                     tempDefaultListModel.addElement(i);
             }
@@ -83,13 +78,13 @@ public class CompanyView extends JDialog {
 
         loadCompaniesButton.addActionListener(e -> {
             companiesDefaultListModel.clear();
-            for (Companies company : companyModel.getCompanies())
+            for (Companies company : companyModel.getElements())
                 companiesDefaultListModel.addElement(company);
         });
 
         removeCompanyButton.addActionListener(e -> {
             if (list1.getSelectedIndex() != -1) {
-                companyModel.removeCompany(companiesDefaultListModel.getElementAt(list1.getSelectedIndex()));
+                companyModel.removeElement(companiesDefaultListModel.getElementAt(list1.getSelectedIndex()));
                 companiesDefaultListModel.remove(list1.getSelectedIndex());
                 textField1.setText("");
                 textField2.setText("");
