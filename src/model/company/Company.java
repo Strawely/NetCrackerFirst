@@ -118,6 +118,19 @@ public class Company implements Companies {
     }
 
     @Override
+    public boolean removeDepatment(Departments department)
+    {
+        return this.departments.remove(department);
+    }
+
+    @Override
+    public boolean addDepatment(Departments department)
+    {
+        return this.departments.add(department);
+    }
+
+
+    @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("Name: " + name + "\n");

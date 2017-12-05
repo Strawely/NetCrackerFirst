@@ -15,7 +15,6 @@ public class Department implements Departments
     private String name;
     private Employees director;
     private static String DEFAULT_NAME = "";
-    private boolean flagSortFName = false, flagSortSName = false, flagSortSalary = false;
 
     public Department(Collection<Employees> employees, String name, Employees director) {
         this.employees = new HashSet<>(employees);
@@ -77,9 +76,9 @@ public class Department implements Departments
     }
 
     @Override
-    public void removeEmployees(Employees employees)
+    public boolean removeEmployees(Employees employees)
     {
-        this.employees.remove(employees);
+         return this.employees.remove(employees);
     }
 
     @Override
@@ -112,18 +111,16 @@ public class Department implements Departments
         return employees.iterator();
     }
 
+
     @Override
-    public int compare(Employees o1, Employees o2)
+    public boolean equals(Object obj)
     {
-        return 0;
+        if (obj instanceof Departments)
+        {
+            Departments department = (Departments) obj;
+            return (name.equals(department.getName()) && director.equals(department.getDirector())
+                    && employees.equals(new HashSet<>(department.getEmployees())));
+        }
+        return false;
     }
-
-//    void sort(String field){
-//        Comparator<Employees> comparator;
-//        if  (field.equals("name"))
-//            comparator = (o1, o2) -> o1.getFirstName().compareTo(o2.getFirstName());
-//        Collections.sort(employees, comparator);
-//    }
-
-
 }

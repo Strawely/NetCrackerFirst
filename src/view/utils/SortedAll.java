@@ -12,23 +12,23 @@ import java.util.Comparator;
  */
 public class SortedAll
 {
-    private static<T extends Employees> ArrayList<T> sortted(ArrayList<T> collection, Comparator comparator)
+    private static ArrayList<Employees> sortted(ArrayList<Employees> collection, Comparator comparator)
     {
         collection.sort(comparator);
         return collection;
     }
 
-    public static<T extends Employees> ArrayList<T> sortbByFirstName(ArrayList<T> arrayList)
+    public static ArrayList<Employees> sortbByFirstName(ArrayList<Employees> arrayList)
     {
         return sortted(arrayList, Comparator.comparing(Employees::getFirstName));
     }
 
-    public static<T extends Employees> ArrayList<T> sortbBySecondName(ArrayList<T> arrayList)
+    public static ArrayList<Employees> sortbBySecondName(ArrayList<Employees> arrayList)
     {
         return sortted(arrayList, Comparator.comparing(Employees::getSecondName));
     }
 
-    public static<T extends Employees> ArrayList<T> sortbBySalary(ArrayList<T> arrayList)
+    public static ArrayList<Employees> sortbBySalary(ArrayList<Employees> arrayList)
     {
         return sortted(arrayList, Comparator.comparing(Employees::getSalary));
     }

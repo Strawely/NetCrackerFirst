@@ -35,4 +35,7 @@ public interface Companies {
     HashSet<Departments> getDepartments();
 
     void setDepartments(HashSet<Departments> departments);
+
+    boolean removeDepatment(Departments department);
+    boolean addDepatment(Departments department);
 }

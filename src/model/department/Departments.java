@@ -8,7 +8,7 @@ import java.util.Comparator;
 /**
  * Created by Админ on 07.11.2017.
  */
-public interface Departments extends Iterable<Employees>, Comparator<Employees>
+public interface Departments extends Iterable<Employees>
 {
     Collection<Employees> getEmployees();
 
@@ -26,7 +26,7 @@ public interface Departments extends Iterable<Employees>, Comparator<Employees>
 
     boolean addEmployees(Employees employees);
 
-    void removeEmployees(Employees employees);
+    boolean removeEmployees(Employees employees);
 
     int getCountEmploye();
 
