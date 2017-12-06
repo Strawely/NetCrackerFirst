@@ -5,8 +5,8 @@ import model.employee.Employees;
 
 import java.util.HashSet;
 
-public class EmployeeService {
-    HashSet<Employees> employees;
+public class EmployeeService implements ServiceInterface<Employees>{
+    private HashSet<Employees> employees;
 
     public EmployeeService() {
         employees = new HashSet<>();
@@ -14,8 +14,9 @@ public class EmployeeService {
             employees.add(new Employee("FirstName" + i, "SecondName" + i, "0" + i, i * 1000));
         }
     }
-    public EmployeeService(HashSet<Employees> employees){
-        this.employees=employees;
+
+    public EmployeeService(HashSet<Employees> employees) {
+        this.employees = employees;
     }
 
 
@@ -23,6 +24,9 @@ public class EmployeeService {
         return employees;
     }
 
+    public void setElements(HashSet<Employees> elements) {
+        employees = elements;
+    }
 
     public void removeElement(Employees element) {
         employees.remove(element);

@@ -2,10 +2,13 @@ package view;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.HashSet;
 
+import model.ServiceInterface;
 import model.company.Companies;
 import model.department.Departments;
 import model.filial.Filials;
+import services.SearchClass;
 import services.Serializer;
 import model.CompanyService;
 
@@ -30,10 +33,13 @@ public class CompanyView extends JDialog {
     private JPanel JPanel1;
     private JPanel JPanel0;
     private JPanel JPanel2;
-    CompanyService companyModel = new CompanyService();
+    ServiceInterface<Companies> companyModel=new CompanyService();
+  //  CompanyController companyController;
 
 
-    public CompanyView() {
+    public CompanyView(/*CompanyService companyModel,CompanyController companyController*/) {
+        /*this.companyModel = companyModel;
+        this.companyController = companyController;*/
         setModal(true);
         setContentPane(contentPane);
         this.contentPane.setPreferredSize(new Dimension(500, 300));
@@ -47,21 +53,19 @@ public class CompanyView extends JDialog {
         DefaultListModel<Departments> departmentsDefaultListModel = new DefaultListModel<>();
 
         JMenu newMenu = new JMenu("Menu");
-
-        JMenuItem searchMenuItem = new JMenuItem("Search");
+        SearchClass searchClass=new SearchClass();
+        JMenuItem searchMenuItem = new SearchClass.SearchMenuItem();
         newMenu.add(searchMenuItem);
-        JMenuItem clearSearchMenuItem = new JMenuItem("Clear search");
-        newMenu.add(searchMenuItem);
+        JMenuItem clearSearchMenuItem = new SearchClass.ClearSearch();
         newMenu.add(clearSearchMenuItem);
         JMenuBar jMenuBar = new JMenuBar();
         jMenuBar.add(newMenu);
         this.setJMenuBar(jMenuBar);
 
         searchMenuItem.addActionListener(e -> {
-            DefaultListModel<Companies> tempDefaultListModel = new DefaultListModel<>();
-            String searchCriteria=JOptionPane.showInputDialog("Введи критерий поиска");
-            for (Companies i : companyModel.getElements()) {
-                if(i.getName().contains(searchCriteria))
+            DefaultListModel tempDefaultListModel = new DefaultListModel<>();
+            HashSet<Companies> tempCompanies = searchClass.searchCompaniesByName(companyModel.getElements());
+            for (Companies i : tempCompanies) {
                     tempDefaultListModel.addElement(i);
             }
             list1.setModel(tempDefaultListModel);

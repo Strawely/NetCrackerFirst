@@ -6,10 +6,10 @@ import model.employee.Employees;
 
 import java.util.HashSet;
 
-public class BuildingService {
-    HashSet<Buildings> buildings;
-    EmployeeService employeeService = new EmployeeService();
-    HashSet<Employees> employees = employeeService.getElements();
+public class BuildingService implements ServiceInterface<Buildings>{
+    private HashSet<Buildings> buildings;
+    private ServiceInterface<Employees> employeeService = new EmployeeService();
+    private HashSet<Employees> employees = employeeService.getElements();
 
     BuildingService() {
         buildings = new HashSet<>();
@@ -21,13 +21,20 @@ public class BuildingService {
     BuildingService(HashSet<Buildings> buildings) {
         this.buildings = buildings;
     }
-    public HashSet<Buildings> getElements(){
+
+    public HashSet<Buildings> getElements() {
         return buildings;
     }
-    public void removeElement(Buildings building){
+
+    public void setElements(HashSet<Buildings> elements) {
+        buildings = elements;
+    }
+
+    public void removeElement(Buildings building) {
         buildings.remove(building);
     }
-    public void addElement(Buildings building){
+
+    public void addElement(Buildings building) {
         buildings.add(building);
     }
 

@@ -5,8 +5,8 @@ import model.filial.Filials;
 
 import java.util.HashSet;
 
-public class FilialService {
-    HashSet<Filials> filials;
+public class FilialService implements ServiceInterface<Filials>{
+    private HashSet<Filials> filials;
 
     public FilialService() {
         filials = new HashSet<>();
@@ -20,6 +20,10 @@ public class FilialService {
 
     public HashSet<Filials> getElements() {
         return filials;
+    }
+
+    public void setElements(HashSet<Filials> elements) {
+        filials = elements;
     }
 
     public void removeElement(Filials filial) {
