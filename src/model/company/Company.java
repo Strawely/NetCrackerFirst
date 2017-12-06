@@ -138,13 +138,11 @@ public class Company implements Companies,Serializable {
         this.departments = departments;
     }
 
-    @Override
     public boolean removeDepatment(Departments department)
     {
         return this.departments.remove(department);
     }
 
-    @Override
     public boolean addDepatment(Departments department)
     {
         return this.departments.add(department);

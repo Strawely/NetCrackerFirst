@@ -11,9 +11,9 @@ public interface Departments {
 
     void setEmployees(Collection<Employees> employees);
 
-    void addEmployee(Employees employee);
+    boolean addEmployee(Employees employee);
 
-    void removeEmployee(Employees employee);
+    boolean removeEmployee(Employees employee);
 
     String getName();
 
@@ -22,11 +22,6 @@ public interface Departments {
     Employees getDirector();
 
     void setDirector(Employees director);
-    boolean addEmployees(Employees employees);
-
-    boolean removeEmployees(Employees employees);
 
     int getCountEmploye();
-
-    public void setDirector(Employees director);
 }

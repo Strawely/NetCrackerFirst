@@ -6,9 +6,6 @@ import model.employee.Employees;
 
 import java.util.*;
 
-/**
- * Created by Админ on 07.11.2017.
- */
 public class Department implements Departments
 {
     private HashSet<Employees> employees;
@@ -42,7 +39,6 @@ public class Department implements Departments
         return director;
     }
 
-    @Override
     public Employees getEmployeesByName(String fname, String sname)
     {
         for (Employees employe : this.employees)
@@ -55,7 +51,6 @@ public class Department implements Departments
         throw new IllegalArgumentException();
     }
 
-    @Override
     public Employees getEmployeesByFSName(String fsname)
     {
         for (Employees employe : this.employees)
@@ -68,17 +63,15 @@ public class Department implements Departments
         }
         throw new IllegalArgumentException();
     }
-
-    @Override
-    public boolean addEmployees(Employees employees)
+    public boolean addEmployee(Employees employee)
     {
-        return this.employees.add(employees);
+        return this.employees.add(employee);
     }
 
     @Override
-    public boolean removeEmployees(Employees employees)
+    public boolean removeEmployee(Employees employee)
     {
-         return this.employees.remove(employees);
+         return this.employees.remove(employee);
     }
 
     @Override
@@ -96,7 +89,7 @@ public class Department implements Departments
         return name;
     }
 
-    @Override
+
     public Iterator<Employees> iterator()
     {
         return employees.iterator();

@@ -15,7 +15,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashSet;
 
 /**
  * Created by Админ on 26.11.2017.
@@ -103,7 +102,7 @@ public class DepartmentView extends JFrame
                 {
                     for(int i = 0; i < indexs.size(); ++i)
                     {
-                        DepartmentView.this.departments.get(row).removeEmployees(indexs.get(i));
+                        DepartmentView.this.departments.get(row).removeEmployee(indexs.get(i));
                     }
                     tableEmployye.setEmployees(DepartmentView.this.departments.get(row).getEmployees());
                     tableemployy.revalidate();
@@ -120,7 +119,7 @@ public class DepartmentView extends JFrame
                 {
                     EmployeeView employeeView = new EmployeeView(new Employee(), DepartmentView.this);
                     employeeView.setVisible(true);
-                    if (!DepartmentView.this.departments.get(row).addEmployees(employeeView.getEmployeesModel()))
+                    if (!DepartmentView.this.departments.get(row).addEmployee(employeeView.getEmployeesModel()))
                     {
                         throw new CantCreateEmployyException();
                     }
