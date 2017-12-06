@@ -1,164 +1,185 @@
-//package view.department;
-//
-//import model.department.Departments;
-//import model.employee.Employee;
-//import model.employee.Employees;
-//import view.SetEmpl;
-//import view.employee.EmployeeView;
-//
-//import javax.swing.*;
-//import java.awt.*;
-//import java.awt.event.ActionEvent;
-//import java.awt.event.ActionListener;
-//import java.util.ArrayList;
-//import java.util.Vector;
-//
-///**
-// * Created by Админ on 13.11.2017.
-// */
-//public class DepartmentView extends JFrame implements SetEmpl
-//{
-//    private JLabel labelName = new JLabel("Name:"), labeldirector = new JLabel("Director:");
-//    private JTextField textFieldName = new JTextField("0", 8);
-//    private JButton buttonDirector;
-//    private JLabel labelemployee = new JLabel("Employes");
-//    private Departments modelDepartament;
-//    private ArrayList<JPanel> listModel = new ArrayList<>();
-//    private JButton buttonOk = new JButton("Ok"), buttonNewEmploye = new JButton("New Employe");
-//    private JPanel panel = new  JPanel();
-//    private JPanel panelName = new JPanel();
-//    private JPanel paneldirector = new JPanel();
-//    private JPanel panelemloyy = new JPanel();
-//    private DepartmentView departmentView = this;
-//    //private JList<JButton> buttonEmployee = new JList<>(listModel);
-//
-//    public DepartmentView(Departments departments)
-//    {
-//        super("DepartmentView");
-//        this.setSize(500, 300);
-//        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-//        add(panel);
-//        panel.setLayout(new BoxLayout(panel,BoxLayout.Y_AXIS));
-//        this.modelDepartament = departments;
-//        panelName.add(labelName);
-//        textFieldName.setText(modelDepartament.getName());
-//        panelName.add(textFieldName);
-//        panel.add(panelName);
-//        paneldirector.add(labeldirector);
-//        String sDirector = modelDepartament.getDirector().getFirstName() + " " + modelDepartament.getDirector().getSecondName();
-//        buttonDirector = new JButton(sDirector);
-//        paneldirector.add(buttonDirector);
-//        panel.add(paneldirector);
-//        buttonDirector.addActionListener(new ActionListener()
-//        {
-//            @Override
-//            public void actionPerformed(ActionEvent e)
-//            {
-//                EmployeeView employeeView = new EmployeeView(modelDepartament.getDirector(), EmployeeView.SET_EMPLOY, departmentView);
-//                employeeView.setVisible(true);
-//            }
-//        });
-//        panel.add(labelemployee);
-//        panelemloyy.setLayout(new BoxLayout(panelemloyy,BoxLayout.Y_AXIS));
- //       for(Employees  employees: modelDepartament)
- //       {
- //           JPanel panel1 = new JPanel();
- //           panelemloyy.add(panel1);
- //           JButton button = new JButton(employees.getFirstName() + " " + employees.getSecondName());
- //           button.setName(employees.getFirstName() + employees.getSecondName());
- //           button.addActionListener(new ActionListener()
- //           {
- //               @Override
- //               public void actionPerformed(ActionEvent e)
- //               {
- //                   String name = button.getName();
- //                   Employees employees1 = modelDepartament.getEmployeesByFSName(name);
- //                   EmployeeView employeeView = new EmployeeView(employees1, EmployeeView.SET_EMPLOY, departmentView);
- //                   employeeView.setVisible(true);
- //               }
- //           });
-//
- //           panel1.add(button);
- //           JButton buttonDelete = new JButton("Delete");
- //           buttonDelete.setName(employees.getFirstName() + employees.getSecondName());
- //           buttonDelete.addActionListener(new ActionListener()
- //           {
- //               @Override
- //               public void actionPerformed(ActionEvent e)
- //               {
- //                   String name = buttonDelete.getName();
- //                   modelDepartament.removeEmployees(modelDepartament.getEmployeesByFSName(name));
- //                   panel1.setVisible(false);
- //                   panelemloyy.remove(panel1);
-//
- //               }
- //           });
- //           panel1.add(buttonDelete);
- //           listModel.add(panel1);
- //       }
- //       panel.add(panelemloyy);
- //       JPanel panelbutton = new JPanel();
- //       panelbutton.add(buttonOk);
- //       panelbutton.add(buttonNewEmploye);
- //       panel.add(panelbutton);
- //       buttonOk.addActionListener(new ActionListener()
- //       {
- //           @Override
- //           public void actionPerformed(ActionEvent e)
- //           {
- //               setVisible(false);
- //               dispose();
- //           }
- //       });
- //       buttonNewEmploye.addActionListener(new ActionListener()
- //       {
- //           @Override
- //           public void actionPerformed(ActionEvent e)
- //           {
- //               Employees employees = new Employee();
- //               EmployeeView employeeView = new EmployeeView(employees, EmployeeView.NEW_EMPLOY, departmentView);
- //               employeeView.setVisible(true);
- //           }
- //       });
-//
- //   }
-//
- //   @Override
- //   public void NewEmploy(Employees employees)
- //   {
- //       JPanel panel1 = new JPanel();
- //       panelemloyy.add(panel1);
- //       JButton button = new JButton(employees.getFirstName() + " " + employees.getSecondName());
- //       button.setName(employees.getFirstName() + employees.getSecondName());
- //       button.addActionListener(new ActionListener()
- //       {
- //           @Override
- //           public void actionPerformed(ActionEvent e)
- //           {
- //               String name = button.getName();
- //               Employees employees1 = modelDepartament.getEmployeesByFSName(name);
- //               EmployeeView employeeView = new EmployeeView(employees1, EmployeeView.SET_EMPLOY, departmentView);
- //               employeeView.setVisible(true);
- //           }
- //       });
-//
- //       panel1.add(button);
- //       JButton buttonDelete = new JButton("Delete");
- //       buttonDelete.setName(employees.getFirstName() + employees.getSecondName());
- //       buttonDelete.addActionListener(new ActionListener()
- //       {
- //           @Override
- //           public void actionPerformed(ActionEvent e)
- //           {
- //               String name = buttonDelete.getName();
- //               modelDepartament.removeEmployees(modelDepartament.getEmployeesByFSName(name));
- //               panel1.setVisible(false);
- //               panelemloyy.remove(panel1);
-//
- //           }
- //       });
- //       panel1.add(buttonDelete);
- //       listModel.add(panel1);
- //       modelDepartament.addEmployees(employees);
-//    }
-//}
+package view.department;
+
+import except.CantCreateEmployyException;
+import model.department.Departments;
+import model.employee.Employee;
+import model.employee.Employees;
+import view.employee.EmployeeView;
+import view.utils.SortedAll;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
+
+/**
+ * Created by Админ on 26.11.2017.
+ */
+public class DepartmentView extends JFrame
+{
+    private ArrayList<Departments> departments;
+    private JPanel paneldepartments = new JPanel();
+    private TableDepartment tableDepartment;
+    private JTable table;
+    private JScrollPane scrollPane;
+    private JPanel panelinfo;
+    private JPanel panelEmployye;
+    private TableEmployee tableEmployye;
+    private JTable tableemployy;
+    private JScrollPane scrollPaneEmployy;
+    private int row = 0;
+    private JLabel labeldirecor = new JLabel("Dircotor"), labeldirectorinfo = new JLabel();
+    private JPanel paneldirector = new JPanel();
+    private String fsname;
+    private JButton buttonNewEmp = new JButton("New Employee"), buttondelete = new JButton("Delete Employee");
+    private JPanel panelbutton = new JPanel();
+    private JLabel labelEmployee = new JLabel("Employees");
+    private JMenuBar menuBar = new JMenuBar();
+    private JMenu menuFile = new JMenu("File"), menuSorted = new JMenu("Sorted");
+    private JMenuItem menuItemByFname = new JMenuItem("By first name"), menuItemBySName = new JMenuItem("By second name"),
+                        menuItemSalary = new JMenuItem("By salary");
+
+    public DepartmentView(Collection<Departments> departments)
+    {
+        super("DepartmentView");
+        this.setSize(930, 300);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        menuBar.add(menuFile);
+        menuBar.add(menuSorted);
+        menuSorted.add(menuItemByFname);
+        menuSorted.add(menuItemBySName);
+        menuSorted.add(menuItemSalary);
+        this.setJMenuBar(menuBar);
+        this.departments = new ArrayList<>(departments) ;
+        tableDepartment = new TableDepartment(paneldepartments ,this.departments);
+        table = new JTable(tableDepartment);
+        scrollPane = new JScrollPane(table);
+        this.setLayout(new GridLayout(1, 2));
+        add(scrollPane);
+        panelinfo = new  JPanel();
+        panelinfo.setLayout(new BoxLayout(panelinfo, BoxLayout.Y_AXIS));
+        paneldirector.add(labeldirecor);
+        fsname = this.departments.get(0).getDirector().getFirstName() + " " + this.departments.get(0).getDirector().getSecondName();
+        labeldirectorinfo.setText(fsname);
+        paneldirector.add(labeldirectorinfo);
+        panelinfo.add(paneldirector);
+        panelinfo.add(labelEmployee);
+        panelEmployye = new JPanel();
+        tableEmployye = new TableEmployee(panelEmployye , this.departments.get(0).getEmployees());
+        tableemployy = new JTable(tableEmployye);
+        tableemployy.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
+        scrollPaneEmployy = new JScrollPane(tableemployy);
+        panelinfo.add(scrollPaneEmployy);
+        add(panelinfo);
+        panelbutton.add(buttonNewEmp);
+        panelbutton.add(buttondelete);
+        panelinfo.add(panelbutton);
+        table.addMouseListener(new MouseAdapter()
+        {
+            @Override
+            public void mouseClicked(MouseEvent e)
+            {
+                row = table.rowAtPoint(e.getPoint());
+                fsname = DepartmentView.this.departments.get(row).getDirector().getFirstName() +
+                         " "  + DepartmentView.this.departments.get(row).getDirector().getSecondName();
+                labeldirectorinfo.setText(fsname);
+                tableEmployye.setEmployees(DepartmentView.this.departments.get(row).getEmployees());
+                tableemployy.revalidate();
+                tableemployy.repaint();
+            }
+        });
+        buttondelete.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                ArrayList<Employees> indexs = tableEmployye.deleteEmployy();
+                if (indexs.size() != 0)
+                {
+                    for(int i = 0; i < indexs.size(); ++i)
+                    {
+                        DepartmentView.this.departments.get(row).removeEmployees(indexs.get(i));
+                    }
+                    tableEmployye.setEmployees(DepartmentView.this.departments.get(row).getEmployees());
+                    tableemployy.revalidate();
+                    tableemployy.repaint();
+                }
+            }
+        });
+        buttonNewEmp.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                try
+                {
+                    EmployeeView employeeView = new EmployeeView(new Employee(), DepartmentView.this);
+                    employeeView.setVisible(true);
+                    if (!DepartmentView.this.departments.get(row).addEmployees(employeeView.getEmployeesModel()))
+                    {
+                        throw new CantCreateEmployyException();
+                    }
+                    tableEmployye.setEmployees(DepartmentView.this.departments.get(row).getEmployees());
+                    tableemployy.revalidate();
+                    tableemployy.repaint();
+                }
+                catch (CantCreateEmployyException e1)
+                {
+                    JOptionPane.showMessageDialog(DepartmentView.this, "Данный сотрудник уже существует", "Ошибка", JOptionPane.WARNING_MESSAGE);
+                }
+            }
+        });
+        labeldirectorinfo.addMouseListener(new MouseAdapter()
+        {
+            @Override
+            public void mouseClicked(MouseEvent e)
+            {
+                EmployeeView employeeView = new EmployeeView(DepartmentView.this.departments.get(row).getDirector(),
+                        DepartmentView.this);
+                employeeView.setVisible(true);
+                fsname = DepartmentView.this.departments.get(row).getDirector().getFirstName() +
+                        " "  + DepartmentView.this.departments.get(row).getDirector().getSecondName();
+                labeldirectorinfo.setText(fsname);
+            }
+        });
+        menuItemByFname.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+//                DepartmentView.this.departments.get(row).setEmployees(
+//                        SortedAll.sortbByFirstName(new ArrayList<>(DepartmentView.this.departments.get(row).getEmployees())));
+                tableEmployye.setEmployees(SortedAll.sortbByFirstName(new ArrayList<>(DepartmentView.this.departments.get(row).getEmployees())));
+                tableemployy.revalidate();
+                tableemployy.repaint();
+            }
+        });
+
+        menuItemBySName.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                tableEmployye.setEmployees(SortedAll.sortbBySecondName(new ArrayList<>(DepartmentView.this.departments.get(row).getEmployees())));
+                tableemployy.revalidate();
+                tableemployy.repaint();
+            }
+        });
+
+        menuItemSalary.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                tableEmployye.setEmployees(SortedAll.sortbBySalary(new ArrayList<>(DepartmentView.this.departments.get(row).getEmployees())));
+                tableemployy.revalidate();
+                tableemployy.repaint();
+            }
+        });
+    }
+}

@@ -1,10 +1,14 @@
 package model.department;
 
+import except.CantCreateEmployyException;
+import model.employee.Employee;
 import model.employee.Employees;
 
-import java.util.Collection;
-import java.util.HashSet;
+import java.util.*;
 
+/**
+ * Created by Админ on 07.11.2017.
+ */
 public class Department implements Departments
 {
     private HashSet<Employees> employees;
@@ -26,15 +30,6 @@ public class Department implements Departments
         this.employees = new HashSet<>(employees);
     }
 
-    @Override
-    public void removeEmployee(Employees employee) {
-        employees.remove(employee);
-    }
-
-    public void addEmployee(Employees employee) {
-        employees.add(employee);
-    }
-
     public String getName() {
         return name;
     }
@@ -47,6 +42,51 @@ public class Department implements Departments
         return director;
     }
 
+    @Override
+    public Employees getEmployeesByName(String fname, String sname)
+    {
+        for (Employees employe : this.employees)
+        {
+            if(fname.equals(employe.getFirstName()) && sname.equals(employe.getSecondName()))
+            {
+                return employe;
+            }
+        }
+        throw new IllegalArgumentException();
+    }
+
+    @Override
+    public Employees getEmployeesByFSName(String fsname)
+    {
+        for (Employees employe : this.employees)
+        {
+            String s = employe.getFirstName() + employe.getSecondName();
+            if(fsname.equals(s))
+            {
+                return employe;
+            }
+        }
+        throw new IllegalArgumentException();
+    }
+
+    @Override
+    public boolean addEmployees(Employees employees)
+    {
+        return this.employees.add(employees);
+    }
+
+    @Override
+    public boolean removeEmployees(Employees employees)
+    {
+         return this.employees.remove(employees);
+    }
+
+    @Override
+    public int getCountEmploye()
+    {
+        return this.employees.size();
+    }
+
     public void setDirector(Employees director) {
         this.director = director;
     }
@@ -56,9 +96,22 @@ public class Department implements Departments
         return name;
     }
 
-   // @Override
-   // public Iterator<Employees> iterator()
-    //{
-    //    return employees.iterator();
-    //}
+    @Override
+    public Iterator<Employees> iterator()
+    {
+        return employees.iterator();
+    }
+
+
+    @Override
+    public boolean equals(Object obj)
+    {
+        if (obj instanceof Departments)
+        {
+            Departments department = (Departments) obj;
+            return (name.equals(department.getName()) && director.equals(department.getDirector())
+                    && employees.equals(new HashSet<>(department.getEmployees())));
+        }
+        return false;
+    }
 }

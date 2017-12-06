@@ -3,6 +3,7 @@ package model.department;
 import model.employee.Employees;
 
 import java.util.Collection;
+import java.util.Comparator;
 
 
 public interface Departments {
@@ -21,5 +22,11 @@ public interface Departments {
     Employees getDirector();
 
     void setDirector(Employees director);
+    boolean addEmployees(Employees employees);
 
+    boolean removeEmployees(Employees employees);
+
+    int getCountEmploye();
+
+    public void setDirector(Employees director);
 }

@@ -65,8 +65,20 @@ public class Employee implements Employees
     }
 
     @Override
+    public int hashCode()
+    {
+        return firstName.hashCode() ^ secondName.hashCode() ^ phoneNumber.hashCode() ^ salary;
+    }
+
+    @Override
     public boolean equals(Object obj)
     {
-        return super.equals(obj);
+        if (obj instanceof  Employees)
+        {
+            Employees emp = (Employees) obj;
+            return (firstName.equals(emp.getFirstName()) && secondName.equals(emp.getSecondName())
+                    && phoneNumber.equals(emp.getPhoneNumber()) && salary == emp.getSalary());
+        }
+        return false;
     }
 }
