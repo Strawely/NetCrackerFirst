@@ -2,25 +2,26 @@ package view;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.HashSet;
 
 import model.ServiceInterface;
+import model.SuperService;
 import model.company.Companies;
 import model.department.Departments;
 import model.filial.Filials;
 import services.SearchClass;
 import services.Serializer;
 import model.CompanyService;
+import view.department.DepartmentView;
 
 public class CompanyView extends JDialog {
     private JPanel contentPane;
     private JTextField textField1;
     private JTextField textField2;
     private JButton loadCompaniesButton;
-    private JButton filialsButton;
-    private JButton buildingsButton;
     private JButton departmentsButton;
-    private JButton employeesButton;
     private JTextField textField3;
     private JButton buttonOK;
     private JButton buttonCancel;
@@ -33,14 +34,19 @@ public class CompanyView extends JDialog {
     private JPanel JPanel1;
     private JPanel JPanel0;
     private JPanel JPanel2;
-    ServiceInterface<Companies> companyModel=new CompanyService();
-  //  CompanyController companyController;
+    private JButton saveCompaniesButton;
+    private JButton removeFilialButton;
+    private JButton removeDepartmentButton;
+    private JButton exitButton;
+
+    ServiceInterface<Companies> companyModel = new CompanyService();
+    //  CompanyController companyController;
 
 
     public CompanyView(/*CompanyService companyModel,CompanyController companyController*/) {
         /*this.companyModel = companyModel;
         this.companyController = companyController;*/
-        setModal(true);
+        setModal(false);
         setContentPane(contentPane);
         this.contentPane.setPreferredSize(new Dimension(500, 300));
         this.JPanel0.setPreferredSize(new Dimension(110, 290));
@@ -53,7 +59,7 @@ public class CompanyView extends JDialog {
         DefaultListModel<Departments> departmentsDefaultListModel = new DefaultListModel<>();
 
         JMenu newMenu = new JMenu("Menu");
-        SearchClass searchClass=new SearchClass();
+        SearchClass searchClass = new SearchClass();
         JMenuItem searchMenuItem = new SearchClass.SearchMenuItem();
         newMenu.add(searchMenuItem);
         JMenuItem clearSearchMenuItem = new SearchClass.ClearSearch();
@@ -66,7 +72,7 @@ public class CompanyView extends JDialog {
             DefaultListModel tempDefaultListModel = new DefaultListModel<>();
             HashSet<Companies> tempCompanies = searchClass.searchCompaniesByName(companyModel.getElements());
             for (Companies i : tempCompanies) {
-                    tempDefaultListModel.addElement(i);
+                tempDefaultListModel.addElement(i);
             }
             list1.setModel(tempDefaultListModel);
         });
@@ -115,17 +121,44 @@ public class CompanyView extends JDialog {
 
             }
         });
-        serializeCompaniesButton.addActionListener(e -> {
-            for (int i = 0; i < companiesDefaultListModel.getSize(); i++)
-                Serializer.store(companiesDefaultListModel.getElementAt(i));
-        });
-
         addCompanyButton.addActionListener(e -> {
             CompanyViewAdd companyViewAdd = new CompanyViewAdd();
             companyViewAdd.pack();
             companyViewAdd.setVisible(true);
+            companiesDefaultListModel.addElement(companyViewAdd.getNewCompany());
 
         });
+        departmentsButton.addActionListener(e -> {
+            DepartmentView departmentView;
+            if (list1.getSelectedIndex() != -1) {
+                departmentView = new DepartmentView(companiesDefaultListModel.getElementAt(list1.getSelectedIndex()).getDepartments());
+                departmentView.setVisible(true);
+
+            }
+        });
+        removeFilialButton.addActionListener(e -> {
+            if(list2.getSelectedIndex()!=-1){
+                int[] selectedIndices = list2.getSelectedIndices();
+                int selectedCompanyIndex = list1.getSelectedIndex();
+                for(int i=0;i<selectedIndices.length;i++){
+                    companiesDefaultListModel.getElementAt(selectedCompanyIndex).removeFilial(filialsDefaultListModel.getElementAt(selectedIndices[i]));
+                }
+                list1.clearSelection();
+                list1.setSelectedIndex(selectedCompanyIndex);
+            }
+        });
+        removeDepartmentButton.addActionListener(e -> {
+            if(list3.getSelectedIndex()!=-1){
+                int[] selectedIndices = list3.getSelectedIndices();
+                int selectedCompanyIndex = list1.getSelectedIndex();
+                for(int i=0;i<selectedIndices.length;i++){
+                    companiesDefaultListModel.getElementAt(selectedCompanyIndex).removeDepartment(departmentsDefaultListModel.getElementAt(selectedIndices[i]));
+                }
+                list1.clearSelection();
+                list1.setSelectedIndex(selectedCompanyIndex);
+            }
+        });
+        exitButton.addActionListener(e -> System.exit(1));
     }
 
 
@@ -138,8 +171,7 @@ public class CompanyView extends JDialog {
         }
         companyView.pack();
         companyView.setVisible(true);
-
-        System.exit(0);
+        //System.exit(0);
     }
 
 }

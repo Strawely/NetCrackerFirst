@@ -130,23 +130,7 @@
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text value="Load companies"/>
-            </properties>
-          </component>
-          <component id="f3004" class="javax.swing.JButton" binding="filialsButton" default-binding="true">
-            <constraints>
-              <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <text value="Filials"/>
-            </properties>
-          </component>
-          <component id="88316" class="javax.swing.JButton" binding="buildingsButton" default-binding="true">
-            <constraints>
-              <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <text value="Buildings"/>
+              <text value="Load Companies"/>
             </properties>
           </component>
           <component id="9abd2" class="javax.swing.JButton" binding="departmentsButton" default-binding="true">
@@ -157,17 +141,9 @@
               <text value="Departments"/>
             </properties>
           </component>
-          <component id="8d1e2" class="javax.swing.JButton" binding="employeesButton" default-binding="true">
-            <constraints>
-              <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <text value="Employees"/>
-            </properties>
-          </component>
           <component id="84593" class="javax.swing.JButton" binding="removeCompanyButton" default-binding="true">
             <constraints>
-              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <text value="Remove Company"/>
@@ -175,18 +151,42 @@
           </component>
           <component id="6791e" class="javax.swing.JButton" binding="addCompanyButton" default-binding="true">
             <constraints>
-              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <text value="Add Company"/>
             </properties>
           </component>
-          <component id="23b01" class="javax.swing.JButton" binding="serializeCompaniesButton">
+          <component id="edbb8" class="javax.swing.JButton" binding="saveCompaniesButton" default-binding="true">
             <constraints>
-              <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text value="Serialize Companies"/>
+              <text value="Save Companies"/>
+            </properties>
+          </component>
+          <component id="76eaf" class="javax.swing.JButton" binding="removeFilialButton" default-binding="true">
+            <constraints>
+              <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="Remove Filials"/>
+            </properties>
+          </component>
+          <component id="2fa2a" class="javax.swing.JButton" binding="removeDepartmentButton" default-binding="true">
+            <constraints>
+              <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="Remove Departments"/>
+            </properties>
+          </component>
+          <component id="67bfa" class="javax.swing.JButton" binding="exitButton" default-binding="true">
+            <constraints>
+              <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="Exit"/>
             </properties>
           </component>
         </children>
