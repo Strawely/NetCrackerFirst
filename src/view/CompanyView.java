@@ -15,6 +15,7 @@ import services.SearchClass;
 import services.Serializer;
 import model.CompanyService;
 import view.department.DepartmentView;
+import view.department.TableEmployee;
 
 public class CompanyView extends JDialog {
     private JPanel contentPane;
@@ -39,7 +40,9 @@ public class CompanyView extends JDialog {
     private JButton removeDepartmentButton;
     private JButton exitButton;
 
-    ServiceInterface<Companies> companyModel = new CompanyService();
+   // ServiceInterface<Companies> companyModel1 = new CompanyService();
+    SuperService superService = new SuperService();
+    ServiceInterface<Companies> companyModel = superService.getCompanyService();
     //  CompanyController companyController;
 
 
@@ -53,6 +56,7 @@ public class CompanyView extends JDialog {
         this.JPanel1.setPreferredSize(new Dimension(110, 290));
         this.JPanel2.setPreferredSize(new Dimension(110, 290));
         this.setTitle("Company");
+        this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 
         DefaultListModel<Companies> companiesDefaultListModel = new DefaultListModel<>();
         DefaultListModel<Filials> filialsDefaultListModel = new DefaultListModel<>();
@@ -88,6 +92,8 @@ public class CompanyView extends JDialog {
 
         loadCompaniesButton.addActionListener(e -> {
             companiesDefaultListModel.clear();
+            superService=new SuperService(Serializer.loadAll(JOptionPane.showInputDialog("Имя файла")));
+            companyModel=superService.getCompanyService();
             for (Companies company : companyModel.getElements())
                 companiesDefaultListModel.addElement(company);
         });
@@ -137,10 +143,10 @@ public class CompanyView extends JDialog {
             }
         });
         removeFilialButton.addActionListener(e -> {
-            if(list2.getSelectedIndex()!=-1){
+            if (list2.getSelectedIndex() != -1) {
                 int[] selectedIndices = list2.getSelectedIndices();
                 int selectedCompanyIndex = list1.getSelectedIndex();
-                for(int i=0;i<selectedIndices.length;i++){
+                for (int i = 0; i < selectedIndices.length; i++) {
                     companiesDefaultListModel.getElementAt(selectedCompanyIndex).removeFilial(filialsDefaultListModel.getElementAt(selectedIndices[i]));
                 }
                 list1.clearSelection();
@@ -148,10 +154,10 @@ public class CompanyView extends JDialog {
             }
         });
         removeDepartmentButton.addActionListener(e -> {
-            if(list3.getSelectedIndex()!=-1){
+            if (list3.getSelectedIndex() != -1) {
                 int[] selectedIndices = list3.getSelectedIndices();
                 int selectedCompanyIndex = list1.getSelectedIndex();
-                for(int i=0;i<selectedIndices.length;i++){
+                for (int i = 0; i < selectedIndices.length; i++) {
                     companiesDefaultListModel.getElementAt(selectedCompanyIndex).removeDepartment(departmentsDefaultListModel.getElementAt(selectedIndices[i]));
                 }
                 list1.clearSelection();
@@ -159,6 +165,7 @@ public class CompanyView extends JDialog {
             }
         });
         exitButton.addActionListener(e -> System.exit(1));
+        saveCompaniesButton.addActionListener(e -> Serializer.storeAll(superService,JOptionPane.showInputDialog("Имя файла")));
     }
 
 

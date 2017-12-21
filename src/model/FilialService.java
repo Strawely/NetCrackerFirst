@@ -3,9 +3,10 @@ package model;
 import model.filial.Filial;
 import model.filial.Filials;
 
+import java.io.Serializable;
 import java.util.HashSet;
 
-public class FilialService implements ServiceInterface<Filials>{
+public class FilialService implements ServiceInterface<Filials>,Serializable{
     private HashSet<Filials> filials;
 
     public FilialService() {

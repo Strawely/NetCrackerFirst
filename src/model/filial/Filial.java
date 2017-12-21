@@ -2,10 +2,11 @@ package model.filial;
 
 import model.building.Buildings;
 
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.HashSet;
 
-public class Filial implements Filials
+public class Filial implements Filials,Serializable
 {
     private String name;
     private HashSet<Buildings> buildings;

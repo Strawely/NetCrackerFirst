@@ -4,9 +4,10 @@ import model.department.Department;
 import model.department.Departments;
 import model.employee.Employees;
 
+import java.io.Serializable;
 import java.util.HashSet;
 
-public class DepartmentService implements ServiceInterface<Departments>{
+public class DepartmentService implements ServiceInterface<Departments>,Serializable{
     private HashSet<Departments> departments;
 
     public DepartmentService() {

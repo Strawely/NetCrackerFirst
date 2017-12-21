@@ -9,9 +9,10 @@ import model.company.Company;
 import model.department.Departments;
 import model.employee.Employees;
 
+import java.io.Serializable;
 import java.util.*;
 
-public class CompanyService implements ServiceInterface<Companies>{
+public class CompanyService implements ServiceInterface<Companies>,Serializable{
     private HashSet<Companies> companies = new HashSet<>();
 
 

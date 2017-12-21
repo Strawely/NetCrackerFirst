@@ -2,12 +2,13 @@ package model.building;
 
 import model.employee.Employees;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 
 
-public class Building implements Buildings
+public class Building implements Buildings,Serializable
 {
     private String address;
     private double coordinatesX, coordinatesY;
