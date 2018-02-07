@@ -3,6 +3,7 @@ package model;
 import model.company.Companies;
 import model.department.Departments;
 import model.employee.Employees;
+import model.modl.Model;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -13,23 +14,29 @@ public class SuperService
 {
     private model.EmployeeService employeeService;
     private model.DepartmentService departmentService;
-    private CompanyService companyService;
+    private ArrayList<Companies> companyService;
 
     public SuperService(HashSet<Employees> employees, HashSet<Departments> departmentses, HashSet<Companies> companies)
     {
         employeeService = new model.EmployeeService(employees);
         departmentService = new model.DepartmentService(departmentses);
-        companyService = new CompanyService(companies);
+        companyService = new ArrayList<>(companies);
+    }
+    public SuperService()
+    {
+        employeeService = new model.EmployeeService();
+        departmentService = new model.DepartmentService();
+        companyService = new ArrayList<>();
     }
 
-    public CompanyService getCompanyService()
+    public Collection<Companies> getCompanyService()
     {
         return companyService;
     }
 
     public void setCompanyService(HashSet<Companies> companyService)
     {
-        this.companyService = new CompanyService(companyService);
+        this.companyService = new ArrayList<>(companyService);
     }
 
     public model.DepartmentService getDepartmentService()
