@@ -1,5 +1,6 @@
 package view.employee;
 
+import javafx.scene.control.RadioButton;
 import model.employee.Employees;
 
 import javax.swing.*;
@@ -25,9 +26,11 @@ public class EmployeeView extends JDialog
 //    private int status;
     private final static int GOOD_CREATE = 1, BAD_CREATE = 0;
     private int flagcreate = 0;
+//    private RadioButton radioButton = new RadioButton();
+    //private JLabel labelcheck = new JLabel("Add this employee in department");
     //private EmployeWork setEmpl;
 
-    public EmployeeView(Employees employees,/* int status, EmployeWork setEmpl,*/ JFrame frame)
+    public EmployeeView(Employees employees,int status, /*EmployeWork setEmpl,*/ JFrame frame)
     {
         super(frame, "EmployeeView", true);
         this.setResizable(false);
@@ -65,6 +68,7 @@ public class EmployeeView extends JDialog
         panelcenter.add(panelsalary, BorderLayout.SOUTH);
         panel.add(panelcenter, BorderLayout.CENTER);
         JPanel panelbut = new JPanel();
+        JPanel panelchec= new JPanel();
         panelbut.add(buttonset);
         panelbut.add(buttonOk);
         panel.add(panelbut, BorderLayout.SOUTH);
@@ -136,6 +140,7 @@ public class EmployeeView extends JDialog
             }
         }
     }
+
 
     public Employees getEmployeesModel()
     {

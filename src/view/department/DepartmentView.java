@@ -1,9 +1,11 @@
 package view.department;
 
+import controller.DepatrmentControllerInter;
 import except.CantCreateEmployyException;
 import model.department.Departments;
 import model.employee.Employee;
 import model.employee.Employees;
+import view.Observer;
 import view.employee.EmployeeView;
 import view.utils.SortedAll;
 
@@ -19,7 +21,7 @@ import java.util.Collection;
 /**
  * Created by Админ on 26.11.2017.
  */
-public class DepartmentView extends JFrame
+public class DepartmentView extends JFrame implements Observer
 {
     private ArrayList<Departments> departments;
     private JPanel paneldepartments = new JPanel();
@@ -32,7 +34,7 @@ public class DepartmentView extends JFrame
     private JTable tableemployy;
     private JScrollPane scrollPaneEmployy;
     private int row = 0;
-    private JLabel labeldirecor = new JLabel("Dircotor"), labeldirectorinfo = new JLabel();
+    private JLabel labeldirecor = new JLabel("Director"), labeldirectorinfo = new JLabel();
     private JPanel paneldirector = new JPanel();
     private String fsname;
     private JButton buttonNewEmp = new JButton("New Employee"), buttondelete = new JButton("Delete Employee");
@@ -42,12 +44,14 @@ public class DepartmentView extends JFrame
     private JMenu menuFile = new JMenu("File"), menuSorted = new JMenu("Sorted");
     private JMenuItem menuItemByFname = new JMenuItem("By first name"), menuItemBySName = new JMenuItem("By second name"),
                         menuItemSalary = new JMenuItem("By salary");
+    private DepatrmentControllerInter controller;
 
-    public DepartmentView(Collection<Departments> departments)
+    public DepartmentView(Collection<Departments> departments, DepatrmentControllerInter controller)
     {
         super("DepartmentView");
         this.setSize(930, 300);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        this.controller = controller;
         menuBar.add(menuFile);
         menuBar.add(menuSorted);
         menuSorted.add(menuItemByFname);
@@ -100,13 +104,14 @@ public class DepartmentView extends JFrame
                 ArrayList<Employees> indexs = tableEmployye.deleteEmployy();
                 if (indexs.size() != 0)
                 {
-                    for(int i = 0; i < indexs.size(); ++i)
-                    {
-                        DepartmentView.this.departments.get(row).removeEmployee(indexs.get(i));
-                    }
-                    tableEmployye.setEmployees(DepartmentView.this.departments.get(row).getEmployees());
-                    tableemployy.revalidate();
-                    tableemployy.repaint();
+                    controller.deleteEmployee(row, indexs);
+//                    for(int i = 0; i < indexs.size(); ++i)
+//                    {
+//                        DepartmentView.this.departments.get(row).removeEmployee(indexs.get(i));
+//                    }
+//                    tableEmployye.setEmployees(DepartmentView.this.departments.get(row).getEmployees());
+//                    tableemployy.revalidate();
+//                    tableemployy.repaint();
                 }
             }
         });
@@ -117,15 +122,16 @@ public class DepartmentView extends JFrame
             {
                 try
                 {
-                    EmployeeView employeeView = new EmployeeView(new Employee(), DepartmentView.this);
+                    EmployeeView employeeView = new EmployeeView(new Employee(),1 , DepartmentView.this);
                     employeeView.setVisible(true);
-                    if (!DepartmentView.this.departments.get(row).addEmployee(employeeView.getEmployeesModel()))
-                    {
-                        throw new CantCreateEmployyException();
-                    }
-                    tableEmployye.setEmployees(DepartmentView.this.departments.get(row).getEmployees());
-                    tableemployy.revalidate();
-                    tableemployy.repaint();
+//                    if (!DepartmentView.this.departments.get(row).addEmployee(employeeView.getEmployeesModel()))
+//                    {
+//                        throw new CantCreateEmployyException();
+//                    }
+                    controller.addEmployee(row, employeeView.getEmployeesModel());
+//                    tableEmployye.setEmployees(DepartmentView.this.departments.get(row).getEmployees());
+//                    tableemployy.revalidate();
+//                    tableemployy.repaint();
                 }
                 catch (CantCreateEmployyException e1)
                 {
@@ -138,7 +144,7 @@ public class DepartmentView extends JFrame
             @Override
             public void mouseClicked(MouseEvent e)
             {
-                EmployeeView employeeView = new EmployeeView(DepartmentView.this.departments.get(row).getDirector(),
+                EmployeeView employeeView = new EmployeeView(DepartmentView.this.departments.get(row).getDirector(), 0 ,
                         DepartmentView.this);
                 employeeView.setVisible(true);
                 fsname = DepartmentView.this.departments.get(row).getDirector().getFirstName() +
@@ -180,5 +186,13 @@ public class DepartmentView extends JFrame
                 tableemployy.repaint();
             }
         });
+    }
+
+    @Override
+    public void handleEvent()
+    {
+        tableEmployye.setEmployees(DepartmentView.this.departments.get(row).getEmployees());
+        tableemployy.revalidate();
+        tableemployy.repaint();
     }
 }

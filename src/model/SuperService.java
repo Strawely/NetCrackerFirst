@@ -4,12 +4,15 @@ import model.building.Buildings;
 import model.company.Companies;
 import model.department.Departments;
 import model.employee.Employees;
+
 import model.filial.Filials;
+
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
+
 
 
 public class SuperService implements Serializable {
@@ -62,6 +65,7 @@ public class SuperService implements Serializable {
 
     public void setBuildingService(HashSet<Buildings> buildings) {
         this.buildingService = new BuildingService(buildings);
+
     }
 
     public DepartmentService getDepartmentService() {
