@@ -4,9 +4,10 @@ import except.CantCreateEmployyException;
 import model.employee.Employee;
 import model.employee.Employees;
 
+import java.io.Serializable;
 import java.util.*;
 
-public class Department implements Departments
+public class Department implements Departments,Serializable
 {
     private HashSet<Employees> employees;
     private String name;

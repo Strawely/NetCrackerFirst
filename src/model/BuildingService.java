@@ -4,9 +4,10 @@ import model.building.Building;
 import model.building.Buildings;
 import model.employee.Employees;
 
+import java.io.Serializable;
 import java.util.HashSet;
 
-public class BuildingService implements ServiceInterface<Buildings>{
+public class BuildingService implements ServiceInterface<Buildings>,Serializable{
     private HashSet<Buildings> buildings;
     private ServiceInterface<Employees> employeeService = new EmployeeService();
     private HashSet<Employees> employees = employeeService.getElements();

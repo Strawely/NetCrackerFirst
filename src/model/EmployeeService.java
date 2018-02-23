@@ -3,9 +3,10 @@ package model;
 import model.employee.Employee;
 import model.employee.Employees;
 
+import java.io.Serializable;
 import java.util.HashSet;
 
-public class EmployeeService implements ServiceInterface<Employees>{
+public class EmployeeService implements ServiceInterface<Employees>,Serializable{
     private HashSet<Employees> employees;
 
     public EmployeeService() {

@@ -1,6 +1,8 @@
 package model.employee;
 
-public class Employee implements Employees
+import java.io.Serializable;
+
+public class Employee implements Employees,Serializable
 {
     private String firstName, secondName, phoneNumber;
     private static String DEFAULT_FIRST_NAME = "", DEFAULT_SECOND_NAME = "", DEFAULT_PHONE_NUMBER = "";

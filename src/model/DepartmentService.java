@@ -5,11 +5,13 @@ import model.department.Departments;
 import model.employee.Employees;
 import view.Observer;
 
-import java.util.ArrayList;
+
+import java.io.Serializable;
+
 import java.util.HashSet;
 import java.util.List;
 
-public class DepartmentService implements ServiceInterface<Departments>, Observable{
+public class DepartmentService implements ServiceInterface<Departments>,Serializable{
     private HashSet<Departments> departments;
     private List<Observer> observerList;
 
