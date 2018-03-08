@@ -71,7 +71,7 @@ public class FilialDB {
 
     public static void main(String[] args) throws Exception {
 
-        FilialDB filialDB = new FilialDB();
+        FilialDB filialDB = new FilialDB("root", "123321", "jdbc:mysql://localhost:3306/NetCrackerFirst");
 
         filialDB.changeRecord(2,3,"Sony M");
         filialDB.printResult(filialDB.getRecord(222));
@@ -82,7 +82,7 @@ public class FilialDB {
         filialDB.printResult(filialDB.getTable());
         System.out.println();
 
-        CompanyDB companyDB = new CompanyDB();
+        CompanyDB companyDB = new CompanyDB("root", "123321", "jdbc:mysql://localhost:3306/NetCrackerFirst");
 
         companyDB.changeRecord(4, 1, "Linux", "Sweden");
         companyDB.printResult(companyDB.getTable());

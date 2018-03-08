@@ -81,8 +81,8 @@ public class CompanyController implements ActionListener, ListSelectionListener 
         } else if (src == view.departmentsButton) {
             DepartmentView departmentView;
             if (view.list1.getSelectedIndex() != -1) {
-                departmentView = new DepartmentView(companiesDefaultListModel.getElementAt(view.list1.getSelectedIndex()).getDepartments());
-                departmentView.setVisible(true);
+//                departmentView = new DepartmentView(companiesDefaultListModel.getElementAt(view.list1.getSelectedIndex()).getDepartments());
+//                departmentView.setVisible(true);
             }
         } else if (src == view.removeFilialButton) {
             if (view.list2.getSelectedIndex() != -1) {
