@@ -1,12 +1,10 @@
 package controller;
 
-import model.CompanyService;
 import model.ServiceInterface;
 import model.SuperService;
 import model.company.Companies;
 import model.department.Departments;
 import model.filial.Filials;
-import services.SearchClass;
 import services.Serializer;
 import view.CompanyView;
 import view.CompanyViewAdd;

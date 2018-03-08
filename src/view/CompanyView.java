@@ -2,21 +2,9 @@ package view;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.HashSet;
 
 import controller.CompanyController;
-import model.ServiceInterface;
-import model.SuperService;
-import model.company.Companies;
-import model.department.Departments;
-import model.filial.Filials;
 import services.SearchClass;
-import services.Serializer;
-import model.CompanyService;
-import view.department.DepartmentView;
-import view.department.TableEmployee;
 
 public class CompanyView extends JDialog {
     public JPanel contentPane;
@@ -112,8 +100,8 @@ public class CompanyView extends JDialog {
             companiesDefaultListModel.clear();
             superService=new SuperService(Serializer.loadAll(JOptionPane.showInputDialog("Имя файла")));
             companyModel=superService.getCompanyService();
-            for (Companies company : companyModel.getElements())
-                companiesDefaultListModel.addElement(company);
+            for (Companies employee : companyModel.getElements())
+                companiesDefaultListModel.addElement(employee);
         });
 
         removeCompanyButton.addActionListener(e -> {
@@ -136,8 +124,8 @@ public class CompanyView extends JDialog {
                 textField3.setText(selectedCompany.getDirector().toString());
 
                 filialsDefaultListModel.clear();
-                for (Filials filial : selectedCompany.getFilials())
-                    filialsDefaultListModel.addElement(filial);
+                for (Filials department : selectedCompany.getFilials())
+                    filialsDefaultListModel.addElement(department);
 
                 departmentsDefaultListModel.clear();
                 for (Departments department : selectedCompany.getDepartments())

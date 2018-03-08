@@ -1,6 +1,7 @@
 package database;
 
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 
@@ -16,15 +17,38 @@ public class FilialDB {
     }
 
     public void removeByID(int id) {
-        db.connect();
-        db.executeUpdate("DELETE FROM Filial WHERE Filial.ID = " + id);
-        db.disconnect();
+        try {
+            db.connect();
+            String sql = "DELETE FROM Filial WHERE Filial.ID = ? ";
+            PreparedStatement statement = db.getConnection().prepareStatement(sql);
+            statement.setInt(1, id);
+            db.executeUpdate(statement);
+            db.disconnect();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public ResultSet getTable() {
         try {
             db.connect();
             return db.executeQuery("SELECT * FROM Filial");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    public ResultSet getSortedTable(int n) {
+        try {
+            db.connect();
+            String sql = "SELECT * FROM Filial ORDER BY ";
+            switch(n){
+                case 1:sql+="ID";break;
+                case 2:sql+="Company_ID";break;
+                case 3:sql+="Name";break;
+            }
+            PreparedStatement statement = db.getConnection().prepareStatement(sql);
+            return db.executeQuery(statement);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -47,9 +71,11 @@ public class FilialDB {
 
     public ResultSet getRecord(int id) {
         try {
-            //if (getTable().getMetaData().getColumnCount() < id)
             db.connect();
-            return db.executeQuery("SELECT * FROM Filial WHERE Filial.ID = " + id);
+            String sql = "SELECT * FROM Filial WHERE Filial.ID = ? ";
+            PreparedStatement statement = db.getConnection().prepareStatement(sql);
+            statement.setInt(1, id);
+            return db.executeQuery(statement);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -59,9 +85,31 @@ public class FilialDB {
     public void changeRecord(int id, int companyID, String name) {
         try {
             db.connect();
-            db.executeUpdate("UPDATE Filial SET Company_ID='" + companyID+
-                    "',Name='" + name +
-                    "' WHERE ID=" + id);
+            String sql = "UPDATE Filial SET Company_ID=?,Name=? WHERE ID=?";
+            PreparedStatement statement = db.getConnection().prepareStatement(sql);
+            if (companyID == -1)
+                statement.setNull(1, companyID);
+            else
+                statement.setInt(1, companyID);
+            statement.setString(2, name);
+            statement.setInt(3, id);
+            db.executeUpdate(statement);
+            db.disconnect();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }  public void addRecord(int companyID, String name) {
+        try {
+            db.connect();
+            String sql = "INSERT INTO Filial (Company_ID,Name) VALUES (?,?)";
+            PreparedStatement statement = db.getConnection().prepareStatement(sql);
+            if (companyID == -1)
+                statement.setNull(1, companyID);
+            else
+                statement.setInt(1, companyID);
+            statement.setString(2, name);
+            db.executeUpdate(statement);
             db.disconnect();
         } catch (Exception e) {
             e.printStackTrace();
@@ -70,26 +118,26 @@ public class FilialDB {
     }
 
     public static void main(String[] args) throws Exception {
-
+/*
         FilialDB filialDB = new FilialDB();
 
-        filialDB.changeRecord(2,3,"Sony M");
+        filialDB.changeRecord(2, 3, "Sony M");
         filialDB.printResult(filialDB.getRecord(222));
 
         System.out.println();
 
-        filialDB.changeRecord(2,1,"Sony N");
+        filialDB.changeRecord(2, 1, "Sony N");
         filialDB.printResult(filialDB.getTable());
         System.out.println();
 
         CompanyDB companyDB = new CompanyDB();
 
-        companyDB.changeRecord(4, 1, "Linux", "Sweden");
-        companyDB.printResult(companyDB.getTable());
+      //  companyDB.changeRecord("4", "1", "Linux", "Sweden");
+        //companyDB.printResult(companyDB.getTable());
 
         System.out.println();
 
-        companyDB.changeRecord(4, 3, "Linux", "England");
-        companyDB.printResult(companyDB.getRecord(4));
+      //  companyDB.changeRecord("4", "3", "Linux", "England");
+        //companyDB.printResult(companyDB.getRecord(4));*/
     }
 }

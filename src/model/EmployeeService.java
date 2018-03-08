@@ -17,7 +17,7 @@ public class EmployeeService implements ServiceInterface<Employees>,Serializable
     }
 
     public EmployeeService(HashSet<Employees> employees) {
-        this.employees = employees;
+       this.employees = employees;
     }
 
 
@@ -32,7 +32,6 @@ public class EmployeeService implements ServiceInterface<Employees>,Serializable
     public void removeElement(Employees element) {
         employees.remove(element);
     }
-
 
     public void addElement(Employees element) {
         employees.add(element);

@@ -1,6 +1,5 @@
 package view.department;
 
-import model.department.Departments;
 import model.employee.Employees;
 
 import javax.swing.*;
