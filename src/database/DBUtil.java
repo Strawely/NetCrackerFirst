@@ -2,10 +2,7 @@ package database;
 
 
 import java.io.DataInputStream;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.Properties;
 
 public class DBUtil {
@@ -53,6 +50,22 @@ public class DBUtil {
         }
     }
 
+    public void executeUpdate(PreparedStatement preparedStatement) {
+        try {
+            if (preparedStatement.getConnection() == connection && connection != null) {
+                preparedStatement.executeUpdate();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public Connection getConnection() {
+        return connection;
+    }
+
+
     public ResultSet executeQuery(String sql) {
         try {
             if (connection != null) {
@@ -67,6 +80,18 @@ public class DBUtil {
         }
         return null;
     }
+
+    public ResultSet executeQuery(PreparedStatement preparedStatement) {
+        try {
+            if (preparedStatement.getConnection() == connection && connection != null) {
+                return preparedStatement.executeQuery();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 
     public void disconnect() {
         try {
@@ -99,7 +124,6 @@ public class DBUtil {
     public void setConnectionUrl(String connectionUrl) {
         this.connectionUrl = connectionUrl;
     }
-
 
 
 }

@@ -1,6 +1,9 @@
 package database;
 
 
+import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 
@@ -18,7 +21,10 @@ public class CompanyDB {
     public void removeByID(int id) {
         try {
             db.connect();
-            db.executeUpdate("DELETE FROM Company WHERE Company.ID = " + id);
+            String sql = "DELETE FROM Company WHERE Company.ID = ? ";
+            PreparedStatement statement = db.getConnection().prepareStatement(sql);
+            statement.setInt(1, id);
+            db.executeUpdate(statement);
             db.disconnect();
         } catch (Exception e) {
             e.printStackTrace();
@@ -35,10 +41,41 @@ public class CompanyDB {
         return null;
     }
 
+    public ResultSet getSortedTable(int n) {
+        try {
+            db.connect();
+            /*
+            String sql = "SELECT * FROM Company ORDER BY ?";
+            PreparedStatement statement = db.getConnection().prepareStatement(sql);
+            switch (n){
+                case 1:statement.setString(1,"ID");break;
+                case 2:statement.setString(1,"Director_ID");break;
+                case 3:statement.setString(1,"Name");break;
+                case 4:statement.setString(1,"FocusArea");break;
+            }*/
+
+            String sql = "SELECT * FROM Company ORDER BY ";
+            switch(n){
+                case 1:sql+="ID";break;
+                case 2:sql+="Director_ID";break;
+                case 3:sql+="Name";break;
+                case 4:sql+="FocusArea";break;
+            }
+            PreparedStatement statement = db.getConnection().prepareStatement(sql);
+            return db.executeQuery(statement);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public ResultSet getRecord(int id) {
         try {
             db.connect();
-            return db.executeQuery("SELECT * FROM Company WHERE Company.ID = " + id);
+            String sql = "SELECT * FROM Company WHERE Company.ID = ? ";
+            PreparedStatement statement = db.getConnection().prepareStatement(sql);
+            statement.setInt(1, id);
+            return db.executeQuery(statement);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -60,13 +97,36 @@ public class CompanyDB {
         }
     }
 
+    public void addRecord(int directorID,String name,String focusArea){
+        try {
+            db.connect();
+            String sql = "INSERT INTO Company (Director_ID,Name,FocusArea) VALUES (?,?,?)";
+            PreparedStatement statement = db.getConnection().prepareStatement(sql);
+            if (directorID == -1)
+                statement.setNull(1, directorID);
+            else
+                statement.setInt(1, directorID);
+            statement.setString(2, name);
+            statement.setString(3, focusArea);
+            db.executeUpdate(statement);
+            db.disconnect();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
     public void changeRecord(int id, int directorID, String name, String focusArea) {
         try {
             db.connect();
-            db.executeUpdate("UPDATE Company SET Director_ID='" + directorID +
-                    "',Name='" + name +
-                    "',FocusArea='" + focusArea +
-                    "' WHERE ID=" + id);
+            String sql = "UPDATE Company SET Director_ID=?,Name=?,FocusArea=? WHERE ID=?";
+            PreparedStatement statement = db.getConnection().prepareStatement(sql);
+            if (directorID == -1)
+                statement.setNull(1, directorID);
+            else
+                statement.setInt(1, directorID);
+            statement.setString(2, name);
+            statement.setString(3, focusArea);
+            statement.setInt(4, id);
+            db.executeUpdate(statement);
             db.disconnect();
         } catch (Exception e) {
             e.printStackTrace();

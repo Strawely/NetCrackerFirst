@@ -6,8 +6,6 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashSet;
 
 /**
  * Created by Админ on 26.11.2017.

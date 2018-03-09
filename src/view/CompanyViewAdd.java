@@ -37,7 +37,7 @@ public class CompanyViewAdd extends JDialog {
         this.JScrollPaneDirector.setPreferredSize(new Dimension(80, 100));
         ServiceInterface<Departments> departmentModel = new DepartmentService();
         ServiceInterface<Filials> filialModel = new FilialService();
-        ServiceInterface<Employees> employeeModel = new EmployeeService();
+        EmployeeService employeeModel = new EmployeeService();
 
         DefaultListModel<Departments> departmentsDefaultListModel = new DefaultListModel<>();
         for (Departments d : departmentModel.getElements())
