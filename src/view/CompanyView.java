@@ -3,7 +3,18 @@ package view;
 import javax.swing.*;
 import java.awt.*;
 
+
 import controller.CompanyController;
+
+
+import controller.DepatrmentController;
+import model.ServiceInterface;
+import model.SuperService;
+import model.company.Companies;
+import model.department.Departments;
+import model.filial.Filials;
+import model.modl.ModelDepartment;
+
 import services.SearchClass;
 
 public class CompanyView extends JDialog {
@@ -42,6 +53,7 @@ public class CompanyView extends JDialog {
         this.companyController = companyController;*/
         setModal(false);
         setContentPane(contentPane);
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.contentPane.setPreferredSize(new Dimension(500, 300));
         this.JPanel0.setPreferredSize(new Dimension(110, 290));
         this.JPanel1.setPreferredSize(new Dimension(110, 290));
@@ -143,9 +155,8 @@ public class CompanyView extends JDialog {
         departmentsButton.addActionListener(e -> {
             DepartmentView departmentView;
             if (list1.getSelectedIndex() != -1) {
-                departmentView = new DepartmentView(companiesDefaultListModel.getElementAt(list1.getSelectedIndex()).getDepartments());
-                departmentView.setVisible(true);
-
+                ModelDepartment modelDepartment = new ModelDepartment(companiesDefaultListModel.getElementAt(list1.getSelectedIndex()).getDepartments());
+                DepatrmentController depatrmentController = new DepatrmentController(modelDepartment);
             }
         });
         removeFilialButton.addActionListener(e -> {

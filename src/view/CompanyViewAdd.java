@@ -30,6 +30,7 @@ public class CompanyViewAdd extends JDialog {
     public CompanyViewAdd() {
         setContentPane(contentPane);
         setModal(true);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.contentPane.setPreferredSize(new Dimension(400, 300));
         this.JScrollPaneFilials.setPreferredSize(new Dimension(80, 100));
         this.JScrollPaneDepartments.setPreferredSize(new Dimension(80, 100));
