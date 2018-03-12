@@ -37,7 +37,7 @@ public class DepartmentView extends JFrame implements Observer
     private JLabel labeldirecor = new JLabel("Director"), labeldirectorinfo = new JLabel();
     private JPanel paneldirector = new JPanel();
     private String fsname;
-    private JButton buttonNewEmp = new JButton("New Employee"), buttondelete = new JButton("Delete Employee");
+    private JButton buttonNewEmp = new JButton("New EmployeeDB"), buttondelete = new JButton("Delete EmployeeDB");
     private JPanel panelbutton = new JPanel();
     private JLabel labelEmployee = new JLabel("Employees");
     private JMenuBar menuBar = new JMenuBar();

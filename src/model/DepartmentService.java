@@ -8,10 +8,11 @@ import view.Observer;
 
 import java.io.Serializable;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
-public class DepartmentService implements ServiceInterface<Departments>,Serializable{
+public class DepartmentService implements ServiceInterface<Departments>,Serializable, Observable{
     private HashSet<Departments> departments;
     private List<Observer> observerList;
 
