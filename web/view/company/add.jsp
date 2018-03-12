@@ -11,7 +11,7 @@
     <title>New Company</title>
 </head>
 <body>
-<form action="" method="post">
+<form method="post">
     <table>
         <tr>
         </tr>
@@ -32,7 +32,7 @@
         </tr>
     </table>
 
-    <button type="submit">Add</button>
+    <input type="submit" value="Add"/>
 </form>
 </body>
 </html>

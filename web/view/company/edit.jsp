@@ -38,7 +38,7 @@
     </tr>
 </table>
 
-<button type="submit">Update</button>
+<input type="submit" value="Update"/>
 </form>
 <%
     }

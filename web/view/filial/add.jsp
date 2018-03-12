@@ -11,7 +11,7 @@
     <title>New Filial</title>
 </head>
 <body>
-<form action="" method="post">
+<form method="post">
     <table>
         <tr>
             <td>Company_ID</td>
@@ -25,7 +25,7 @@
         </tr>
     </table>
 
-    <button type="submit">Add</button>
+    <input type="submit" value="Add"/>
 </form>
 </body>
 </html>

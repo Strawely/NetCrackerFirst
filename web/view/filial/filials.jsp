@@ -14,7 +14,30 @@
 <%
     ResultSet rs = (ResultSet) request.getAttribute("rs");
 %>
-<form action="" method="post">
+<form action="/view/filial/" method="post">
+    <table>
+        <tr>
+            <td>
+                <h4>Search by</h4>
+            </td>
+            <td valign="top">
+                <select name="col">
+                    <option value="1">ID</option>
+                    <option value="2">Company_ID</option>
+                    <option value="3">Name</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input name="expr" size="10"/>
+            </td>
+            <td>
+                <input type="submit" formmethod="post" value="Search"/>
+            </td>
+        </tr>
+
+    </table>
     <table border="1">
         <thead>
         <tr>

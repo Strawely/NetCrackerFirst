@@ -69,6 +69,38 @@ public class FilialDB {
         }
     }
 
+    public ResultSet getSearchResult(int col, String expr) {
+        try {
+            db.connect();
+            String sql;
+            //sql= "SELECT * FROM Filial WHERE ? LIKE ?";
+            if (!expr.equals("")) {
+                switch (col) {
+                    case 1:
+                        sql = "SELECT * FROM Filial WHERE ID LIKE ?";
+                        break;
+                    case 2:
+                        sql = "SELECT * FROM Filial  WHERE Company_ID LIKE ?";
+                        break;
+                    case 3:
+                        sql = "SELECT * FROM Filial  WHERE Name LIKE ?";
+                        break;
+                    default:
+                        sql = "SELECT * FROM Filial  WHERE ID LIKE ?";
+                }
+                PreparedStatement statement = db.getConnection().prepareStatement(sql);
+                statement.setString(1, expr);
+                return db.executeQuery(statement);
+            } else {
+                sql = "SELECT * FROM Filial";
+                return db.executeQuery(sql);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public ResultSet getRecord(int id) {
         try {
             db.connect();

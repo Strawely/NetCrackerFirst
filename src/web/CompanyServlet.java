@@ -17,6 +17,10 @@ public class CompanyServlet extends HttpServlet {
     CompanyDB companyDB = new CompanyDB();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setContentType("text/html");
+        response.setCharacterEncoding("UTF-8");
+        request.setAttribute("rs", companyDB.getSearchResult(Integer.parseInt(request.getParameter("col")),request.getParameter("expr")));
+        request.getRequestDispatcher("companies.jsp").forward(request, response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

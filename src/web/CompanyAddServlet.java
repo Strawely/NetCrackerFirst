@@ -18,7 +18,8 @@ public class CompanyAddServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
         response.setCharacterEncoding("UTF-8");
-        int d_id = request.getParameter("director_id").equals("null") ? -1 : Integer.parseInt(request.getParameter("director_id"));
+        int d_id = request.getParameter("director_id").equals("null") || request.getParameter("director_id").equals("null") ?
+                -1 : Integer.parseInt(request.getParameter("director_id"));
         companyDB.addRecord(d_id,
                 request.getParameter("name"),
                 request.getParameter("focusarea"));

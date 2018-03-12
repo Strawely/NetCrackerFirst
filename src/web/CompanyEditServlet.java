@@ -19,14 +19,15 @@ public class CompanyEditServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
         response.setCharacterEncoding("UTF-8");
-        int d_id = request.getParameter("director_id").equals("null") ? -1 : Integer.parseInt(request.getParameter("director_id"));
+        int d_id = request.getParameter("director_id").equals("null") || request.getParameter("director_id").equals("") ?
+                -1 : Integer.parseInt(request.getParameter("director_id"));
         companyDB.changeRecord(Integer.parseInt(request.getParameter("id")),
                 d_id,
                 request.getParameter("name"),
                 request.getParameter("focusarea"));
+        request.removeAttribute("edit");
         request.setAttribute("rs", companyDB.getTable());
         request.getRequestDispatcher("companies.jsp").forward(request, response);
-
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -2,10 +2,7 @@ package database;
 
 
 import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
+import java.sql.*;
 
 public class CompanyDB {
     DBUtil db;
@@ -55,11 +52,19 @@ public class CompanyDB {
             }*/
 
             String sql = "SELECT * FROM Company ORDER BY ";
-            switch(n){
-                case 1:sql+="ID";break;
-                case 2:sql+="Director_ID";break;
-                case 3:sql+="Name";break;
-                case 4:sql+="FocusArea";break;
+            switch (n) {
+                case 1:
+                    sql += "ID";
+                    break;
+                case 2:
+                    sql += "Director_ID";
+                    break;
+                case 3:
+                    sql += "Name";
+                    break;
+                case 4:
+                    sql += "FocusArea";
+                    break;
             }
             PreparedStatement statement = db.getConnection().prepareStatement(sql);
             return db.executeQuery(statement);
@@ -72,10 +77,45 @@ public class CompanyDB {
     public ResultSet getRecord(int id) {
         try {
             db.connect();
-            String sql = "SELECT * FROM Company WHERE Company.ID = ? ";
+            String sql = "SELECT * FROM Company WHERE ID = ? ";
             PreparedStatement statement = db.getConnection().prepareStatement(sql);
             statement.setInt(1, id);
             return db.executeQuery(statement);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public ResultSet getSearchResult(int col, String expr) {
+        try {
+            db.connect();
+            String sql;
+            //sql= "SELECT * FROM Company WHERE ? LIKE ?";
+            if (!expr.equals("")) {
+                switch (col) {
+                    case 1:
+                        sql = "SELECT * FROM Company WHERE ID LIKE ?";
+                        break;
+                    case 2:
+                        sql = "SELECT * FROM Company WHERE Director_ID LIKE ?";
+                        break;
+                    case 3:
+                        sql = "SELECT * FROM Company WHERE Name LIKE ?";
+                        break;
+                    case 4:
+                        sql = "SELECT * FROM Company WHERE FocusArea LIKE ?";
+                        break;
+                    default:
+                        sql = "SELECT * FROM Company WHERE ID LIKE ?";
+                }
+                PreparedStatement statement = db.getConnection().prepareStatement(sql);
+                statement.setString(1, expr);
+                return db.executeQuery(statement);
+            } else {
+                sql = "SELECT * FROM Company";
+                return db.executeQuery(sql);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -97,7 +137,7 @@ public class CompanyDB {
         }
     }
 
-    public void addRecord(int directorID,String name,String focusArea){
+    public void addRecord(int directorID, String name, String focusArea) {
         try {
             db.connect();
             String sql = "INSERT INTO Company (Director_ID,Name,FocusArea) VALUES (?,?,?)";
@@ -114,6 +154,7 @@ public class CompanyDB {
             e.printStackTrace();
         }
     }
+
     public void changeRecord(int id, int directorID, String name, String focusArea) {
         try {
             db.connect();

@@ -12,14 +12,16 @@ import java.io.IOException;
 /**
  * Created by Роман on 23.02.2018.
  */
-@WebServlet(name = "FilialEditServlet",urlPatterns = "/view/filial/edit")
+@WebServlet(name = "FilialEditServlet", urlPatterns = "/view/filial/edit")
 public class FilialEditServlet extends HttpServlet {
     FilialDB filialDB = new FilialDB();
+
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
         response.setCharacterEncoding("UTF-8");
-        int c_id = request.getParameter("company_id").equals("null") ? -1 : Integer.parseInt(request.getParameter("company_id"));
+        int c_id = request.getParameter("company_id").equals("null") || request.getParameter("company_id").equals("") ?
+                -1 : Integer.parseInt(request.getParameter("company_id"));
         filialDB.changeRecord(Integer.parseInt(request.getParameter("id")),
                 c_id,
                 request.getParameter("name"));

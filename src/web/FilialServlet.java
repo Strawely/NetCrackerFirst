@@ -14,15 +14,19 @@ import java.io.IOException;
  */
 @WebServlet(name = "FilialServlet",urlPatterns = "/view/filial/")
 public class FilialServlet extends HttpServlet {
+    private FilialDB filialDB= new FilialDB();
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        response.setContentType("text/html");
+        response.setCharacterEncoding("UTF-8");
+        request.setAttribute("rs", filialDB.getSearchResult(Integer.parseInt(request.getParameter("col")),request.getParameter("expr")));
+        request.getRequestDispatcher("filials.jsp").forward(request, response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
         response.setCharacterEncoding("UTF-8");
 
-        FilialDB filialDB= new FilialDB();
+
         request.setAttribute("rs", filialDB.getTable());
         request.getRequestDispatcher("filials.jsp").forward(request, response);
     }

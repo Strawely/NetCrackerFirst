@@ -18,7 +18,8 @@ public class FilialAddServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
         response.setCharacterEncoding("UTF-8");
-        int c_id = request.getParameter("company_id").equals("null") ? -1 : Integer.parseInt(request.getParameter("company_id"));
+        int c_id = request.getParameter("company_id").equals("null") || request.getParameter("company_id").equals("") ?
+                -1 : Integer.parseInt(request.getParameter("company_id"));
         filialDB.addRecord(c_id,
                 request.getParameter("name"));
         request.setAttribute("rs", filialDB.getTable());
