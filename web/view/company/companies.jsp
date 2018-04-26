@@ -1,8 +1,10 @@
 <%@ page import="model.employee.Employees" %>
 <%@ page import="java.util.HashSet" %>
 <%@ page import="model.EmployeeService" %>
-<%@ page import="java.sql.ResultSet" %><%--
-  Created by IntelliJ IDEA.
+<%@ page import="java.sql.ResultSet" %>
+<%@ page import="javax.naming.InitialContext" %>
+<%@ page import="java.util.ArrayList" %>
+<%--  Created by IntelliJ IDEA.
   User: Роман
   Date: 23.02.2018
   Time: 19:22
@@ -15,10 +17,10 @@
 </head>
 <body>
 <form action="/view/company/" method="post">
-<%
-    ResultSet rs = (ResultSet) request.getAttribute("rs");
-%>
-
+    <%
+        ResultSet rs = (ResultSet) request.getAttribute("rs");
+        ArrayList<String> files = (ArrayList<String>)request.getAttribute("files");
+    %>
     <table>
         <tr>
             <td>
@@ -26,7 +28,7 @@
             </td>
             <td valign="top">
                 <select name="col">
-                    <option value="1">ID</option>
+                    <option value="1">id</option>
                     <option value="2">Director_ID</option>
                     <option value="3">Name</option>
                     <option value="4">FocusArea</option>
@@ -35,10 +37,19 @@
         </tr>
         <tr>
             <td>
-                <input name="expr" size="10"/>
+                <input name="expr" size="6"/>
             </td>
             <td>
                 <input type="submit" formmethod="post" value="Search"/>
+            </td>
+            <td valign="bottom">
+                <select name="file">
+                    <%for (String s : files) {%>
+                    <option value="<%=s%>"><%=s%>
+                    </option>
+                    <% }%>
+                </select>
+                <input name="load" type="submit" formmethod="post" value="Load from XML"/>
             </td>
         </tr>
 
@@ -46,7 +57,7 @@
     <table border="1">
         <thead>
         <tr>
-            <th><a href="sort?n=1">ID</a></th>
+            <th><a href="sort?n=1">id</a></th>
             <th><a href="sort?n=2">Director_ID</a></th>
             <th><a href="sort?n=3">Name</a></th>
             <th><a href="sort?n=4">FocusArea</a></th>
@@ -58,7 +69,7 @@
             while (rs.next()) {
         %>
         <tr>
-            <td><%=rs.getString("ID")%>
+            <td><%=rs.getString("id")%>
             </td>
             <td><%=rs.getString("Director_ID")%>
             </td>
@@ -67,8 +78,9 @@
             <td><%=rs.getString("FocusArea")%>
             </td>
             <td>
-                <a href='edit?id=<%=rs.getString("ID")%>'>Edit</a>
-                <a href='delete?id=<%=rs.getString("ID")%>'>Delete</a>
+                <a href='edit?id=<%=rs.getString("id")%>'>Edit</a>
+                <a href='delete?id=<%=rs.getString("id")%>'>Delete</a>
+                <a href='xml?saveID=<%=rs.getString("id")%>'>Save as XML</a>
             </td>
         </tr>
         <%

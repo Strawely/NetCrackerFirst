@@ -1,6 +1,8 @@
 package database;
 
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
 import java.io.DataInputStream;
 import java.sql.*;
 import java.util.Properties;
@@ -17,6 +19,16 @@ public class DBUtil {
         userName = "root";
         pass = "";
         connectionUrl = "jdbc:mysql://localhost:3306/NetCrackerFirst";
+    }
+
+    public static Object lookUp(String bean) {
+        try {
+            Context ctx = new InitialContext();
+            return ctx.lookup("java:global/" + bean + "EJB");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public DBUtil(String userName, String pass, String connectionUrl) {

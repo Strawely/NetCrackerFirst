@@ -1,7 +1,10 @@
 package web;
 
-import database.FilialDB;
+import Beans.Company;
+import Beans.Filial;
+import database.DBUtil;
 
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -14,15 +17,20 @@ import java.io.IOException;
  */
 @WebServlet(name = "FilialAddServlet",urlPatterns = "/view/filial/add")
 public class FilialAddServlet extends HttpServlet {
-    FilialDB filialDB=new FilialDB();
+    @EJB
+    private Filial filialBean = (Filial) DBUtil.lookUp("Filial");
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
         response.setCharacterEncoding("UTF-8");
         int c_id = request.getParameter("company_id").equals("null") || request.getParameter("company_id").equals("") ?
                 -1 : Integer.parseInt(request.getParameter("company_id"));
-        filialDB.addRecord(c_id,
-                request.getParameter("name"));
-        request.setAttribute("rs", filialDB.getTable());
+        filialBean.addRecord(c_id,
+                request.getParameter("name"),
+                request.getParameter("coordinates"),
+                request.getParameter("startOfWork"),
+                request.getParameter("endOfWork"));
+        request.setAttribute("files",filialBean.getXMLList());
+        request.setAttribute("rs",filialBean.getTable());
         request.getRequestDispatcher("filials.jsp").forward(request, response);
 
     }

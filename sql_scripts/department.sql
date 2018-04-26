@@ -1,9 +1,0 @@
-CREATE TABLE IF NOT EXISTS Department(
-ID INTEGER NOT NULL AUTO_INCREMENT,
-
-Name VARCHAR(255),
-id_director INTEGER,
-id_company INTEGER,
-PRIMARY KEY (ID),
-FOREIGN KEY (id_company) REFERENCES Company(ID),
-FOREIGN KEY (id_director) REFERENCES Employee(ID));

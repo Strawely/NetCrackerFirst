@@ -1,7 +1,9 @@
 package web;
 
-import database.CompanyDB;
+import Beans.Company;
+import database.DBUtil;
 
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -14,16 +16,18 @@ import java.io.IOException;
  */
 @WebServlet(name = "CompanyAddServlet",urlPatterns = "/view/company/add")
 public class CompanyAddServlet extends HttpServlet {
-    CompanyDB companyDB=new CompanyDB();
+    @EJB
+    private Company companyBean = (Company) DBUtil.lookUp("Company");
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
         response.setCharacterEncoding("UTF-8");
-        int d_id = request.getParameter("director_id").equals("null") || request.getParameter("director_id").equals("null") ?
+        int d_id = request.getParameter("director_id").equals("") || request.getParameter("director_id").equals("null") ?
                 -1 : Integer.parseInt(request.getParameter("director_id"));
-        companyDB.addRecord(d_id,
+        companyBean.addRecord(d_id,
                 request.getParameter("name"),
                 request.getParameter("focusarea"));
-        request.setAttribute("rs", companyDB.getTable());
+        request.setAttribute("files",companyBean.getXMLList());
+        request.setAttribute("rs", companyBean.getTable());
         request.getRequestDispatcher("companies.jsp").forward(request, response);
     }
 

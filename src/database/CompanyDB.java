@@ -122,7 +122,6 @@ public class CompanyDB {
         return null;
     }
 
-
     public void printResult(ResultSet rs) {
         try {
             ResultSetMetaData data = rs.getMetaData();

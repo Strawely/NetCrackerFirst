@@ -14,7 +14,6 @@
 <body>
 <a href='view/company/'><h1>Companies</h1></a>
 <a href='view/filial/'><h1>Filials</h1></a>
-    </tbody>
-</table>
+<a href='map/filialMap'><h1>Filial map</h1></a>
 </body>
 </html>

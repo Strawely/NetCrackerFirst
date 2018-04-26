@@ -1,7 +1,10 @@
 package web;
 
-import database.FilialDB;
+import Beans.Company;
+import Beans.Filial;
+import database.DBUtil;
 
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -14,18 +17,21 @@ import java.io.IOException;
  */
 @WebServlet(name = "FilialEditServlet", urlPatterns = "/view/filial/edit")
 public class FilialEditServlet extends HttpServlet {
-    FilialDB filialDB = new FilialDB();
-
-
+    @EJB
+    private Filial filialBean = (Filial) DBUtil.lookUp("Filial");
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
         response.setCharacterEncoding("UTF-8");
         int c_id = request.getParameter("company_id").equals("null") || request.getParameter("company_id").equals("") ?
                 -1 : Integer.parseInt(request.getParameter("company_id"));
-        filialDB.changeRecord(Integer.parseInt(request.getParameter("id")),
+        filialBean.changeRecord(Integer.parseInt(request.getParameter("id")),
                 c_id,
-                request.getParameter("name"));
-        request.setAttribute("rs", filialDB.getTable());
+                request.getParameter("name"),
+                request.getParameter("coordinates"),
+                request.getParameter("startOfWork"),
+                request.getParameter("endOfWork"));
+        request.setAttribute("files",filialBean.getXMLList());
+        request.setAttribute("rs",filialBean.getTable());
         request.getRequestDispatcher("filials.jsp").forward(request, response);
 
     }
@@ -33,7 +39,8 @@ public class FilialEditServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
         response.setCharacterEncoding("UTF-8");
-        request.setAttribute("rs", filialDB.getRecord(Integer.parseInt(request.getParameter("id"))));
+        request.setAttribute("files",filialBean.getXMLList());
+        request.setAttribute("rs", filialBean.getRecord(Integer.parseInt(request.getParameter("id"))));
         request.getRequestDispatcher("edit.jsp").forward(request, response);
     }
 }

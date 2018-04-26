@@ -18,8 +18,8 @@
 <form action="" method="post">
 <table>
     <tr>
-        <td>ID</td>
-        <td><input disabled name="id" value='<%=rs.getString("ID")%>'/></td>
+        <td>id</td>
+        <td><input disabled name="id" value='<%=rs.getString("id")%>'/></td>
     </tr>
     <tr>
         <td>Director_ID</td>

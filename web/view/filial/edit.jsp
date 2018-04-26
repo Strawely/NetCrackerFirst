@@ -18,8 +18,8 @@
 <form action="" method="post">
     <table>
         <tr>
-            <td>ID</td>
-            <td><input disabled name="id" value='<%=rs.getString("ID")%>'/></td>
+            <td>id</td>
+            <td><input disabled name="id" value='<%=rs.getString("id")%>'/></td>
         </tr>
         <tr>
             <td>Company_ID</td>
@@ -29,6 +29,21 @@
         <tr>
             <td>Name</td>
             <td><input type="text" name="name" value='<%=rs.getString("Name")%>'>
+            </td>
+        </tr>
+        <tr>
+            <td>Coordinates</td>
+            <td><input type="text" name="coordinates" value='<%=rs.getString("Coordinates")%>'>
+            </td>
+        </tr>
+        <tr>
+            <td>StartOfWork</td>
+            <td><input type="text" name="startOfWork" value='<%=rs.getString("StartOfWork")%>'>
+            </td>
+        </tr>
+        <tr>
+            <td>EndOfWork</td>
+            <td><input type="text" name="EndOfWork" value='<%=rs.getString("EndOfWork")%>'>
             </td>
         </tr>
     </table>

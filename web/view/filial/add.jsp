@@ -23,6 +23,21 @@
             <td><input type="text" name="name">
             </td>
         </tr>
+        <tr>
+            <td>Coordinates</td>
+            <td><input type="text" name="coordinates">
+            </td>
+        </tr>
+        <tr>
+            <td>StartOfWork</td>
+            <td><input type="text" name="startOfWork">
+            </td>
+        </tr>
+        <tr>
+            <td>EndOfWork</td>
+            <td><input type="text" name="endOfWork">
+            </td>
+        </tr>
     </table>
 
     <input type="submit" value="Add"/>

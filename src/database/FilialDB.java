@@ -131,7 +131,9 @@ public class FilialDB {
             e.printStackTrace();
         }
 
-    }  public void addRecord(int companyID, String name) {
+    }
+
+    public void addRecord(int companyID, String name) {
         try {
             db.connect();
             String sql = "INSERT INTO Filial (Company_ID,Name) VALUES (?,?)";
@@ -150,10 +152,8 @@ public class FilialDB {
     }
 
     public static void main(String[] args) throws Exception {
-
 /*
         FilialDB filialDB = new FilialDB();
-
 
         filialDB.changeRecord(2, 3, "Sony M");
         filialDB.printResult(filialDB.getRecord(222));

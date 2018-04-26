@@ -11,16 +11,27 @@
         </webroots>
       </configuration>
     </facet>
+    <facet type="ejb" name="EJB">
+      <configuration>
+        <descriptors>
+          <deploymentDescriptor name="ejb-jar.xml" url="file://$MODULE_DIR$/META-INF/ejb-jar.xml" />
+        </descriptors>
+        <ejbRoots>
+          <root url="file://$MODULE_DIR$/src" />
+        </ejbRoots>
+      </configuration>
+    </facet>
   </component>
-  <component name="NewModuleRootManager" inherit-compiler-output="true">
+  <component name="NewModuleRootManager" inherit-compiler-output="false">
+    <output url="file:///production/NetCrackerFirst" />
+    <output-test url="file:///test/NetCrackerFirst" />
     <exclude-output />
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
     </content>
-    <orderEntry type="inheritedJdk" />
+    <orderEntry type="jdk" jdkName="1.8" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="lib" level="application" />
-    <orderEntry type="library" name="mysql-connector-java-5.1.45-bin" level="project" />
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
@@ -30,5 +41,7 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="library" name="mysql-connector-java-5.1.45-bin" level="application" />
+    <orderEntry type="library" name="gson-2.2.2" level="project" />
   </component>
 </module>

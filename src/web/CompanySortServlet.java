@@ -1,7 +1,9 @@
 package web;
 
-import database.CompanyDB;
+import Beans.Company;
+import database.DBUtil;
 
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -14,6 +16,8 @@ import java.io.IOException;
  */
 @WebServlet(name = "CompanySortServlet",urlPatterns = "/view/company/sort")
 public class CompanySortServlet extends HttpServlet {
+    @EJB
+    private Company companyBean = (Company) DBUtil.lookUp("Company");
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
@@ -21,8 +25,8 @@ public class CompanySortServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
         response.setCharacterEncoding("UTF-8");
-        CompanyDB companyDB=new CompanyDB();
-        request.setAttribute("rs",companyDB.getSortedTable(Integer.parseInt(request.getParameter("n"))));
+        request.setAttribute("files",companyBean.getXMLList());
+        request.setAttribute("rs",companyBean.getSortedTable(Integer.parseInt(request.getParameter("n"))));
         request.getRequestDispatcher("companies.jsp").forward(request,response);
     }
 }
