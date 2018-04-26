@@ -200,6 +200,7 @@ public class FilialBean implements Filial {
     public void addRecord(int companyID, String name, String coordinates, String startOfWork, String endOfWork) {
         try {
             Time time = new Time(00-00-00);
+
             String sql = "INSERT INTO Filial (Company_ID,Name,Coordinates,StartOfWork,EndOfWork) VALUES (?,?,?,?,?)";
             PreparedStatement statement = connection.prepareStatement(sql);
             if (companyID == -1)
