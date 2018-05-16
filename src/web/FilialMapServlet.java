@@ -27,8 +27,10 @@ public class FilialMapServlet extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
         user = new User(Double.parseDouble(request.getParameter("x")),
                 Double.parseDouble(request.getParameter("y")),
-                LocalTime.parse(request.getParameter("time"), DateTimeFormatter.ofPattern("HH:mm:ss")));
-        request.setAttribute("rs", filialBean.getRecord(MappedFilialService.findNearestFilial(filialBean.getTable(), user)));
+                LocalTime.parse(request.getParameter("time"), DateTimeFormatter.ofPattern("HH:mm")));
+        request.setAttribute("nearest", filialBean.getRecord(MappedFilialService.findNearestFilial(filialBean.getTable(), user)));
+        request.setAttribute("rs",filialBean.getTable());
+        request.setAttribute("user",user);
         request.getRequestDispatcher("filialMap.jsp").forward(request, response);
     }
 

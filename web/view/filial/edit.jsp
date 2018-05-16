@@ -43,7 +43,7 @@
         </tr>
         <tr>
             <td>EndOfWork</td>
-            <td><input type="text" name="EndOfWork" value='<%=rs.getString("EndOfWork")%>'>
+            <td><input type="text" name="endOfWork" value='<%=rs.getString("EndOfWork")%>'>
             </td>
         </tr>
     </table>
